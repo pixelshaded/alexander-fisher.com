@@ -3,11 +3,72 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="{{ asset('styles/base.css') }}" rel="stylesheet" type="text/css">
+            <link href='http://fonts.googleapis.com/css?family=Exo:400,600,900' rel='stylesheet' type='text/css'>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+            <div id="header">
+                {% block header %}
+                    <div id="info-bar-container">
+                        <div id="info-bar">
+                            <div id="namebar">
+                                <p>Alexander</p>
+                                <p>Fisher</p>
+                                <p>Programmer Extraordinaire</p>
+                            </div>
+                            <div id="socialbar">
+                                <a href="#"><img src="{{ asset('img/facebook-icon.jpg') }}" alt="facebook"></a>
+                                <a href="#"><img src="{{ asset('img/twitter-icon.jpg') }}" alt="twitter"></a>
+                                <!-- <a href="#"><img src="img/google-plus.jpg" alt="google-plus"></a> -->
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+                <div id="navbar-container">    
+                    <div id="navbar">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Games</a></li>
+                            <li><a href="#">Web</a></li>
+                            <li><a href="#">Resume</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Bio</a></li>
+                            <li><a href="#">Tutorials</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="wrapper">
+                <div id="content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div id="footer">
+                    {% block footer %}
+                        <hr/>
+                        <div id="navbar-footer">
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Games</a></li>
+                                <li><a href="#">Web</a></li>
+                                <li><a href="#">Resume</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Bio</a></li>
+                                <li><a href="#">Tutorials</a></li>
+                            </ul>
+                        </div>
+                        <div id="copyright">
+                            <p>&copy 2012 Alexander Fisher</p>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+        {% block javascripts %}
+        {% endblock %}
     </body>
 </html>
