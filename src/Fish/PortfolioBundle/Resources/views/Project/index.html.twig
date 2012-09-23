@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+
+<div id="slideshow-container">
+    <div id="slideshow">
+    </div>
+</div>
+
+<div id="projects">
+    {% for projects in projects %}
+        <div class="project">
+            <img></img>
+            <h3>{{ project.title }}</h3>
+            <h4>{{ project.subtitle }}</h4>
+            <p>{{ project.intro }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<hr/>
+
+<div id="aboutme">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu tortor elit, vestibulum molestie enim. Morbi elementum egestas pretium. Duis et congue metus. Duis commodo accumsan nibh volutpat lacinia. Proin volutpat justo eu lacus congue non sagittis neque blandit. Fusce sagittis ligula et massa consequat pretium vehicula dui porta. Suspendisse fringilla tempus augue sit amet hendrerit. Proin id lorem eu risus viverra congue. Duis leo magna, cursus eget suscipit non, suscipit eu turpis.</p>
+</div>
+
+{% endblock %}

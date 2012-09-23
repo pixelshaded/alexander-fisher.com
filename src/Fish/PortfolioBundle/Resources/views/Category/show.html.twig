@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+{% block title %}Games{% endblock %}
+
+{% block content %}
+
+<div id="category">
+    <h1>{{category.title}}</h1>
+    <h2>{{category.subtitle}}</h2>
+    <p>{{category.description}}</p>
+</div>
+<hr/>
+<div id="projects">
+    {% for project in category.projects %}
+    <div class="project">
+        <img></img>
+        <h3>{{ project.title }}</h3>
+        <h4>{{ project.subtitle }}</h4>
+        <p>{{ project.intro }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

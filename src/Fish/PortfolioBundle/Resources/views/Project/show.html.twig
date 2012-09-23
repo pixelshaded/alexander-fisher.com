@@ -1,0 +1,46 @@
+<h1>Project</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+        <tr>
+            <th>Slug</th>
+            <td>{{ entity.slug }}</td>
+        </tr>
+        <tr>
+            <th>Subtitle</th>
+            <td>{{ entity.subtitle }}</td>
+        </tr>
+        <tr>
+            <th>Tagline</th>
+            <td>{{ entity.tagline }}</td>
+        </tr>
+        <tr>
+            <th>Intro</th>
+            <td>{{ entity.intro }}</td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td>{{ entity.content }}</td>
+        </tr>
+        <tr>
+            <th>Subcontent</th>
+            <td>{{ entity.subcontent }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('project') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>

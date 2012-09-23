@@ -13,11 +13,11 @@ root {
 body {
     padding: 0;
     margin: 0;
+    font-family: 'Exo', sans-serif;
 }
 
 #header {
     width: 100%;
-    font-family: 'Exo', sans-serif;
 }
 
 #info-bar-container {
@@ -92,10 +92,6 @@ body {
     padding: 0 170px 0 170px;
 }
 
-#content {
-    padding: 0 10px 0 10px;
-}
-
 #footer {
     position: relative;
     font-family: 'Exo', sans-serif;
@@ -148,5 +144,45 @@ body {
 
 hr {
     border: 1px solid #808080;
+}
+
+#category {
+    padding: 0 10px 0 10px;
+}
+
+#category h1, #category h2 {
+    text-transform: uppercase;
+    color: #0087c8;
+}
+
+#category h1 {
+    font-size: 100px;
+    line-height: 130%;
+    margin: 0 0 -20px 0;
+}
+
+#category h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+}
+
+#category p {
+    color: #4d4d4d;
+    line-height: 170%;
+    padding: 30px 0 30px 0;
+    margin: 0;
+}
+
+#project {
+    padding: 0 10px 0 10px;
+}
+
+#aboutme p{
+    color: #0087c8;
+    padding: 20px 10px 70px 10px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 150%;
 }
 

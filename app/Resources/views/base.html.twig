@@ -31,9 +31,8 @@
                 <div id="navbar-container">    
                     <div id="navbar">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Games</a></li>
-                            <li><a href="#">Web</a></li>
+                            <li><a href="{{ path('project_index') }}">Home</a></li>
+                            {% render "FishPortfolioBundle:Category:categoryNav" %}
                             <li><a href="#">Resume</a></li>
                             <li><a href="#">Contact</a></li>
                             <li><a href="#">Bio</a></li>
@@ -52,9 +51,8 @@
                         <hr/>
                         <div id="navbar-footer">
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Games</a></li>
-                                <li><a href="#">Web</a></li>
+                                <li><a href="{{ path('project_index') }}">Home</a></li>
+                                {% render "FishPortfolioBundle:Category:categoryNav" %}
                                 <li><a href="#">Resume</a></li>
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="#">Bio</a></li>

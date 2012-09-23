@@ -2,3 +2,4 @@ app/cache/*
 app/logs/*
 vendor
 composer.phar
+app/config/parameters.yml

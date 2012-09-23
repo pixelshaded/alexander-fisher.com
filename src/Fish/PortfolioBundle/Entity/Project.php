@@ -8,7 +8,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Fish\PortfolioBundle\Entity\Project
  *
- * @Orm\MappedSuperclass
+ * Orm\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table
  */
 class Project
 {
@@ -33,6 +35,14 @@ class Project
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
+    
+    /**
+     * @var string $subtitle
+     * 
+     * @ORM\Column(name="subtitle", type="string", length=60)
+     */
+    private $subtitle;
+    
 
     /**
      * @var string $tagline
@@ -43,11 +53,32 @@ class Project
     
 
     /**
+     * var string $intro
+     * 
+     * @ORM\Column(name="intro", type="text")
+     */
+    private $intro;
+    
+    /**
      * @var string $content
      *
      * @ORM\Column(name="content", type="text")
      */
     private $content;
+    
+    /**
+     * @var string $subcontent
+     * 
+     * @ORM\Column(name="subcontent", type="text")
+     */
+    private $subcontent;
+    
+    /**
+     * @var Category $category
+     * 
+     * @ORM\ManyToOne(targetEntity="Category")
+     */
+    private $category;
 
 
     /**
@@ -83,6 +114,16 @@ class Project
         return $this->title;
     }
     
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+    
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+    }
+    
     public function getSlug()
     {
         return $this->slug;
@@ -110,6 +151,16 @@ class Project
     {
         return $this->tagline;
     }
+    
+    public function getIntro()
+    {
+        return $this->intro;
+    }
+    
+    public function setIntro($intro)
+    {
+        $this->intro = $intro;
+    }
 
     /**
      * Set content
@@ -132,5 +183,25 @@ class Project
     public function getContent()
     {
         return $this->content;
+    }
+    
+    public function getSubcontent()
+    {
+        return $this->getSubcontent();
+    }
+    
+    public function setSubcontent($subcontent)
+    {
+        $this->subcontent = $subcontent;
+    }
+    
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    public function setCategory($category)
+    {
+        $category->addProject($this);
     }
 }
