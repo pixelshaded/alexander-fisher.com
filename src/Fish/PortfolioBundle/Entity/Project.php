@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * Orm\MappedSuperclass
  * @ORM\Entity
- * @ORM\Table
+ * @ORM\Table(name="projects")
  */
 class Project
 {

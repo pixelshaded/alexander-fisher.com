@@ -10,7 +10,7 @@ use Fish\PortfolioBundle\Entity\Project;
 /**
  * Fish\PortfolioBundle\Entity\Category
  *
- * @ORM\Table()
+ * @ORM\Table(name="categories")
  * @ORM\Entity
  */
 class Category

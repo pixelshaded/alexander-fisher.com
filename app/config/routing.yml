@@ -1,3 +1,8 @@
+fish_user:
+    resource: "@FishUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 fish_portfolio:
     resource: "@FishPortfolioBundle/Controller/"
     type:     annotation
