@@ -1,0 +1,173 @@
+/* 
+    Document   : base
+    Created on : Sep 22, 2012, 7:29:15 PM
+    Author     : pixelshaded
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@left-padding: 180px;
+@right-padding: 180px;
+
+@bluetext: #0087c8;
+@darkgreytext: #333333;
+@greytext: #666666;
+@lightgreytext: #b6b6b6;
+
+@import 'category.less';
+@import 'project.less';
+@import 'index.less';
+
+root { 
+    display: block;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Exo', sans-serif;
+}
+
+#header
+{
+    width: 100%;
+    
+    #info-bar-container
+    {
+        background-color: #002133;
+        padding: 12px @right-padding 12px @left-padding;
+    }
+    #info-bar
+    {
+        position: relative;
+    }    
+    #namebar
+    {
+        p
+        {
+            color: @bluetext;
+            margin: 0;
+            padding: 0;
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 90%;
+            text-transform: uppercase;
+        }
+        p:last-child
+        {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 136%;
+        }
+    }    
+    #socialbar
+    {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+    }
+    #navbar-container
+    {
+        background-color: #9f9f9f;
+        font-size: 16px;
+        padding: 0 @right-padding 0 @left-padding;
+    }
+    #navbar
+    {
+        ul
+        {
+            margin: 0;
+            padding: 0;
+        }
+        li
+        {
+            display: inline-block;
+            line-height: 45px;
+            padding-right: 40px;
+        }
+        a:link {
+            color: @darkgreytext;
+            text-decoration: none;
+        }
+        a:visited
+        {
+            color: @darkgreytext;
+            text-decoration: none;
+        }
+        a:hover
+        {
+            color: @darkgreytext;
+            font-weight: normal;
+            text-decoration: underline;
+        }
+        a:active
+        {
+            color: @darkgreytext;
+            text-decoration: none;
+        }
+    }
+}
+
+#wrapper
+{
+    padding: 0 170px 0 170px;
+}
+
+#footer
+{
+    position: relative;
+    font-family: 'Exo', sans-serif;
+    font-size: 18px;
+    
+    #navbar-footer
+    {
+        padding-left: 10px;
+        font-weight: normal;
+        
+        ul
+        {
+            margin: 0;
+            padding: 0;
+        }        
+        li
+        {
+            display: inline-block;
+            padding-right: 20px;
+        }
+        a
+        {
+            color: @greytext;
+            text-decoration: none;
+        }
+        a:visisted
+        {
+            color: @greytext;
+            text-decoration: none;
+        }
+        a:hover
+        {
+            color: @greytext;
+            text-decoration: underline;
+        }
+    }
+    
+    #copyright
+    {
+        position: absolute;
+        padding-right: 10px;
+        bottom: 0;
+        right: 0;
+        
+        p
+        {
+            padding: 0;
+            margin: 0;
+            color: @lightgreytext;
+        }
+    }
+}
+
+hr
+{
+    border: 1px solid #808080;
+}
