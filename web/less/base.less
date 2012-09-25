@@ -132,6 +132,11 @@ body {
     
     #content
     {
+        .content-wrapper
+        {
+            padding: 0px 10px 0 10px;
+        }
+    
         #category 
         {
     
@@ -174,26 +179,10 @@ body {
         #login-wrapper, #register-wrapper
         {
             padding: 10px 10px 0 10px;
-            
-            .error
-            {
-                color: @bluetext;
-            }
 
             #login, #register
             {
                 position: relative;
-                
-                label
-                {
-                    display: inline-block;
-                }
-
-                input
-                {
-                    position: absolute;
-                    left: 100px;
-                }
             }
         }
         
@@ -265,4 +254,75 @@ body {
 hr
 {
     border: 1px solid #808080;
+}
+
+form
+{
+    position: relative;
+}
+
+form div
+{
+    vertical-align: top;
+}
+
+label
+{
+    display: inline-block;
+    width: 100px;
+    margin: 2px 0px;
+    vertical-align: top;
+    
+}
+
+input
+{
+    margin: 2px 0px;
+    width: 150px;
+}
+
+textarea
+{
+    width: 500px;
+    height: 200px;
+    margin: 2px 0px;
+    border: 2px inset; 
+}
+
+#content .error
+{
+    color: @bluetext;
+}
+
+.category
+{
+    padding: 10px 0px;
+    
+    .category-title
+    {
+        color: @bluetext;
+        font-size: 20px;
+    }
+    
+    .category-subtitle
+    {
+        font-style: italic;
+    }
+}
+
+form.delete
+{
+    border: 2px solid red;
+    padding: 10px;
+}
+
+h1, h2, h3, h4, h5
+{
+    color: black;
+}
+
+a:link, a:visited, a:hover, a:active
+{
+    color: @bluetext;
+    text-decoration: underline;
 }
