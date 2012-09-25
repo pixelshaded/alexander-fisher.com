@@ -1,46 +1,29 @@
-<h1>Project</h1>
+{% extends '::base.html.twig' %}
+{% block title %}{{project.title}}{% endblock %}
+{% block content %}
 
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
-        </tr>
-        <tr>
-            <th>Title</th>
-            <td>{{ entity.title }}</td>
-        </tr>
-        <tr>
-            <th>Slug</th>
-            <td>{{ entity.slug }}</td>
-        </tr>
-        <tr>
-            <th>Subtitle</th>
-            <td>{{ entity.subtitle }}</td>
-        </tr>
-        <tr>
-            <th>Tagline</th>
-            <td>{{ entity.tagline }}</td>
-        </tr>
-        <tr>
-            <th>Intro</th>
-            <td>{{ entity.intro }}</td>
-        </tr>
-        <tr>
-            <th>Content</th>
-            <td>{{ entity.content }}</td>
-        </tr>
-        <tr>
-            <th>Subcontent</th>
-            <td>{{ entity.subcontent }}</td>
-        </tr>
-    </tbody>
-</table>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('project') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="content-wrapper">
+    <div id="gallery">
+        <div id="gallery-image">
+            <img src="{{ asset('img/magnadude.jpg') }}" alt="{{ project.title }}"/>
+        </div>
+        <div class="title-wrapper">
+            <div class="project-title">
+            {{project.title}}
+            </div>
+            <div class="project-tagline">
+                {{project.tagline}}
+            </div>
+        </div>
+    </div>
+    <div id="project-content">
+        {{project.content|raw}}
+    </div>
+    <div id="project-subcontent">
+        {{project.subcontent|raw}}
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div><a href="{{ path('admin_project_edit', {'slug' : project.slug}) }}"><button type="button">Edit</button></a></div>
+    {% endif %}
+</div>
+{% endblock %}

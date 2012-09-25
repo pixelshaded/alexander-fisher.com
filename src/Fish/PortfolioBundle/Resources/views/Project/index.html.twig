@@ -9,13 +9,15 @@
 </div>
 
 <div id="projects">
-    {% for projects in projects %}
-        <div class="project">
-            <img></img>
-            <h3>{{ project.title }}</h3>
-            <h4>{{ project.subtitle }}</h4>
-            <p>{{ project.intro }}</p>
+    {% for project in projects if loop.index < 4 %}
+    <div class="project">
+        <img src="{{ asset('img/magnadude.jpg') }}" alt="{{ project.title }}"/>
+        <div class="title-wrapper">
+            <div class="project-title">{{ project.title }}</div>
+            <div class="project-subtitle">{{ project.subtitle }}</div>
         </div>
+        <div class="project-intro">{{ project.intro }}</div>
+    </div>
     {% endfor %}
 </div>
 

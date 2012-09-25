@@ -12,14 +12,14 @@ use Fish\PortfolioBundle\Entity\Project;
 /**
  * Project controller.
  *
- * @Route("/")
+ * @Route("")
  */
 class ProjectController extends Controller
 {
     /**
      * Lists all Project entities.
      *
-     * @Route("", name="project_index")
+     * @Route("/", name="project_index")
      * @Template()
      */
     public function indexAction()
@@ -36,21 +36,21 @@ class ProjectController extends Controller
     /**
      * Finds and displays a Project entity.
      *
-     * @Route("/portfolio/{id}/", name="project_show")
+     * @Route("/projects/{slug}/", name="project_show")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('FishPortfolioBundle:Project')->find($id);
+        $project = $em->getRepository('FishPortfolioBundle:Project')->findOneBy(array('slug' => $slug));
 
-        if (!$entity) {
+        if (!$project) {
             throw $this->createNotFoundException('Unable to find Project entity.');
         }
 
         return array(
-            'entity'      => $entity,
+            'project'      => $project,
         );
     }
 

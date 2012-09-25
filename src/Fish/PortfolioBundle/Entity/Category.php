@@ -166,12 +166,10 @@ class Category
     public function addProject(Project $project)
     {
         $this->projects[] = $project;
-        $project->setCategory($this);
     }
     
     public function removeProject(Project $project)
     {
         $this->projects->removeElement($project);
-        $project->setCategory(null);
     }
 }

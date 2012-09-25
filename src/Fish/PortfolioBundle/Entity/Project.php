@@ -187,7 +187,7 @@ class Project
     
     public function getSubcontent()
     {
-        return $this->getSubcontent();
+        return $this->subcontent;
     }
     
     public function setSubcontent($subcontent)
@@ -202,6 +202,7 @@ class Project
     
     public function setCategory($category)
     {
+        $this->category = $category;
         $category->addProject($this);
     }
 }

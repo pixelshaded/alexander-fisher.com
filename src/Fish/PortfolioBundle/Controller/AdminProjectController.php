@@ -8,11 +8,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fish\PortfolioBundle\Entity\Project;
+use Fish\PortfolioBundle\Form\ProjectType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Project controller.
  *
- * @Route("/admin")
+ * @Route("/admin/projects")
  */
 class AdminProjectController extends Controller
 {
@@ -32,26 +34,104 @@ class AdminProjectController extends Controller
             'projects' => $projects,
         );
     }
-
+    
     /**
      * Finds and displays a Project entity.
      *
-     * @Route("/portfolio/{id}/", name="admin_project_show")
+     * @Route("/new", name="admin_project_new")
      * @Template()
      */
-    public function showAction($id)
+    public function newAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FishPortfolioBundle:Project')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Project entity.');
+        $project = new Project();
+        $form = $this->createForm(new ProjectType(), $project);
+        
+        if ($request->getMethod() === "POST")
+        {            
+            $form->bindRequest($request);
+            
+            if ($form->isValid())
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($project);
+                $em->flush();
+                
+                return $this->redirect($this->generateUrl('project_show', array('slug' => $project->getSlug())));
+            }
         }
-
+        
         return array(
-            'entity'      => $entity,
+            'form' => $form->createView()
         );
     }
+    
+    /**
+     * Finds and displays a Project entity.
+     *
+     * @Route("/{slug}/new", name="admin_project_edit")
+     * @Template()
+     */
+    public function editAction(Request $request, $slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('FishPortfolioBundle:Project')->findOneBy(array('slug' => $slug));
+        
+        if (!$project)
+        {
+            throw \Error('Coud not find Project.');
+        }
+        
+        $form = $this->createForm(new ProjectType(), $project);
+        
+        if ($request->getMethod() === "POST")
+        {            
+            $form->bindRequest($request);
+            
+            if ($form->isValid())
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($project);
+                $em->flush();
+                
+                return $this->redirect($this->generateUrl('project_show', array('slug' => $project->getSlug())));
+            }
+        }
+        
+        return array(
+            'project' => $project,
+            'form' => $form->createView()
+        );
+    }
+    
+    /**
+     * @Route("/{slug}/delete", name="admin_project_delete")
+     * @Template
+     */
+    public function deleteAction(Request $request, $slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('FishPortfolioBundle:Project')->findOneBy(array('slug' => $slug));
+        
+        if (!$project) throw \Error('Could not find project.');
+        
+        $form = $this->createFormBuilder()->getForm();
+        
+        if ($request->getMethod() === "DELETE")
+        {
+            $form->bindRequest($request);
+            
+            if ($form->isValid())
+            {
+                $em->remove($project);
+                $em->flush();
+                return $this->redirect($this->generateURL('admin_project_index'));
+            }
+        }
+        
+        return array(
+            'project' => $project,
+            'form' => $form->createView()
+        );
+    }   
 
 }
