@@ -19,10 +19,10 @@ class AdminCategoryController extends Controller
     /**
      * Lists all Category entities.
      *
-     * Route("/", name="admin_categories")
+     * @Route("/", name="admin_category_index")
      * @Template()
      */
-    public function categoryNavAction()
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 

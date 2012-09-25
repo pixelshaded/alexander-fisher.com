@@ -80,8 +80,30 @@ body {
             display: inline-block;
             line-height: 45px;
             padding-right: 40px;
+            position: relative;
+            
+            ul
+            {                
+                display: none;
+                position: absolute;
+                background-color: #9f9f9f;
+                padding-left: 20px;
+                left: -20px;
+                border: 1px solid #666666;
+                border-top: 0;
+                
+                li
+                {
+                    display: block;
+                }
+            }
         }
-        a:link {
+        li:hover > ul
+        {
+            display: block;
+        }
+        a:link
+        {
             color: @darkgreytext;
             text-decoration: none;
         }
