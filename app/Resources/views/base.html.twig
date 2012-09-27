@@ -32,33 +32,33 @@
                             </div>
                         </div>
                     </div>
-                {% endblock %}
-                <div id="navbar-container">    
-                    <div id="navbar">
-                        <ul>
-                            <li><a href="{{ path('project_index') }}">Home</a></li>
-                            {% render "FishPortfolioBundle:Category:categoryNav" %}
-                            <li><a href="#">Resume</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Bio</a></li>
-                            <li><a href="#">Tutorials</a></li>
-                            {% if is_granted('ROLE_USER') %} 
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <li>
-                                        <a href="#">Admin</a>
-                                        <ul>
-                                            <li><a href="{{ path('admin_category_index') }}">Categories</a></li>
-                                            <li><a href="{{ path('admin_project_index') }}">Projects</a></li>
-                                        </ul>
-                                    </li>
+                    <div id="navbar-container">    
+                        <div id="navbar">
+                            <ul>
+                                <li><a href="{{ path('project_index') }}">Home</a></li>
+                                {% render "FishPortfolioBundle:Category:categoryNav" %}
+                                <li><a href="#">Resume</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Bio</a></li>
+                                <li><a href="#">Tutorials</a></li>
+                                {% if is_granted('ROLE_USER') %} 
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li>
+                                            <a href="#">Admin</a>
+                                            <ul>
+                                                <li><a href="{{ path('admin_category_index') }}">Categories</a></li>
+                                                <li><a href="{{ path('admin_project_index') }}">Projects</a></li>
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                    <li><a href="{{ path('logout') }}">Logout</a></li>
+                                {% else %}
+                                    <li><a href="{{ path('login') }}">Login</a></li>
                                 {% endif %}
-                                <li><a href="{{ path('logout') }}">Logout</a></li>
-                            {% else %}
-                                <li><a href="{{ path('login') }}">Login</a></li>
-                            {% endif %}
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                {% endblock %}
             </div>
             <div id="wrapper">
                 <div id="content">

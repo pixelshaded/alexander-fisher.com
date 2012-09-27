@@ -1,41 +1,89 @@
 {% extends '::base.html.twig' %}
 {% block title %}Projects{% endblock %}
 
-{% block content %}
-
-<div id="slideshow-container">
-    <div id="slideshow">
+{% block header %}
+    {{ parent() }}
+    <div id="slideshow-container">
+        <div id="slideshow">
+            <div id="image-box">
+                <div id="current-image"><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></div>
+                <div class="title-wrapper">
+                    <div class="project-title">{{ projects[0].title }}</div>
+                    <div class="project-subtitle">{{ projects[0].subtitle }}</div>
+                    <div class="project-tagline">{{ projects[0].tagline }}</div>
+                </div>
+            </div>
+            <div id="carousel">
+                <ul>
+                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
+                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
+                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
+                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
+{% endblock %}
+
+{% block content %}
 
 <script>
     $(document).ready(function(){
-        var width = $('.project').outerWidth();
-        var amount = parseInt("{{ projects|length }}");
-        var html;
-        var paused = false;
         
-        //on hover pause
-        $('#projects').hover(function(){
-            paused = true;
-        }, function(){
-            paused = false;
-        });
-        
-        //dont animate if there are not enough elements
-        if (amount < 4) return;
-        
-        setInterval(function() {
-            
-            //add first element to the end
-            $('.project:eq(0)').clone().appendTo('#projects');
-                       
-            if (!paused) $('#projects').animate({"left" : -width}, "{{ projects_animation_speed }}", function(){
-                //remove it after we finish animating and reset left
-                $('#projects').css({"left" : 0});
-                $('.project:eq(0)').remove();
+        function projectSlider() {
+            var width = $('.project').outerWidth();
+            var amount = parseInt("{{ projects|length }}");
+            var paused = false;
+
+            //on hover pause
+            $('#projects').hover(function(){
+                paused = true;
+            }, function(){
+                paused = false;
             });
-        }, "{{ projects_interval }}");
+
+            //dont animate if there are not enough elements
+            if (amount < 4) return;
+
+            setInterval(function() {
+
+                //add first element to the end
+                $('.project:eq(0)').clone().appendTo('#projects');
+
+                if (!paused) $('#projects').animate({"left" : -width}, "{{ projects_animation_speed }}", function(){
+                    //remove it after we finish animating and reset left
+                    $('#projects').css({"left" : 0});
+                    $('.project:eq(0)').remove();
+                });
+            }, "{{ projects_interval }}"); 
+        }
+        
+        function slideshow(){
+            var height = $('#carousel ul li').outerHeight();
+            var paused = false;
+
+            //on hover pause
+            $('#carousel ul').hover(function(){
+                paused = true;
+            }, function(){
+                paused = false;
+            });
+
+            setInterval(function() {
+
+                //add first element to the end
+                $('#carousel ul li:eq(0)').clone().appendTo('#carousel ul');
+
+                if (!paused) $('#carousel ul').animate({"top" : -height}, "{{ slideshow_animation_speed }}", function(){
+                    //remove it after we finish animating and reset left
+                    $('#carousel ul').css({"top" : 0});
+                    $('#carousel ul li:eq(0)').remove();
+                });
+            }, "{{ slideshow_interval }}"); 
+        }
+        
+        projectSlider();
+        slideshow();
     });
 </script>
 

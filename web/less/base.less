@@ -78,6 +78,7 @@ body {
         {
             margin: 0;
             padding: 0;
+            z-index: 10;
         }
         li
         {
@@ -399,6 +400,95 @@ a:link, a:visited, a:hover, a:active
             margin: 0;
             padding: 0 10px;
             white-space: normal;
+        }
+    }
+}
+
+#slideshow-container
+{
+    background-color: #3c3c3c;
+    border-bottom: 8px solid #212121;
+    
+    #slideshow
+    {
+        width: 960px;
+        height: 360px;
+        margin: auto;
+        position: relative;
+        padding: 0;
+        
+        #image-box
+        {
+            position: relative;
+            
+            .title-wrapper
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                color: white;
+                text-transform: uppercase;
+                padding-left: 10px;
+                text-shadow: 2px 2px 2px #000;
+                
+                .project-title
+                {
+                    font-size: 70px;
+                    font-weight: bold;
+                    margin-bottom: -3%;
+                }
+                
+                .project-subtitle
+                {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+                
+                .project-tagline
+                {
+                    font-size: 20px;
+                    font-weight: 200;
+                }
+            }
+        
+            #current-image, #current-image img
+            {
+                width: 640px;
+                height: 360px;
+                display: inline-block;
+            }
+        }
+        
+        #carousel
+        {
+            
+            width: 320px;
+            height: 360px;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            overflow: hidden;
+            
+            ul
+            {
+                padding: 10px 0 0 0;
+                margin: 0 0 0 10px;
+                position: absolute;
+                top: 0;
+            }
+            
+            img, li
+            {
+                width: 310px;
+                height: 165px;
+                margin: 0;
+            }
+            
+            li
+            {
+                list-style-type: none;
+                padding-bottom: 10px;
+            }
         }
     }
 }
