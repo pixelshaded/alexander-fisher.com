@@ -379,13 +379,37 @@ a:link, a:visited, a:hover, a:active
     }
 }
 
+#project-slider
+{
+    overflow: hidden;
+    width: 960px;
+    height: 350px;
+    margin: 25px 0;
+    position: relative;
+    
+    #projects
+    {
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        white-space: nowrap;
+        
+        .project
+        {
+            margin: 0;
+            padding: 0 10px;
+            white-space: normal;
+        }
+    }
+}
+
 #projects
 {    
     padding: 25px 0;
     
     .project
     {
-        padding: 0px 8px;
+        padding: 0px 10px;
         width: 300px;
         color: @greytext;
         
@@ -419,7 +443,7 @@ a:link, a:visited, a:hover, a:active
         .project-intro
         {
             font-size: 14px;
-            height: 90px;
+            height: 94px;
             overflow: hidden;
         }
     }

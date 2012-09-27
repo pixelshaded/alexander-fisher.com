@@ -8,17 +8,50 @@
     </div>
 </div>
 
-<div id="projects">
-    {% for project in projects if loop.index < 4 %}
-    <div class="project">
-        <img src="{{ asset('img/magnadude.jpg') }}" alt="{{ project.title }}"/>
-        <div class="title-wrapper">
-            <div class="project-title">{{ project.title }}</div>
-            <div class="project-subtitle">{{ project.subtitle }}</div>
+<script>
+    $(document).ready(function(){
+        var width = $('.project').outerWidth();
+        var amount = parseInt("{{ projects|length }}");
+        var html;
+        var paused = false;
+        
+        //on hover pause
+        $('#projects').hover(function(){
+            paused = true;
+        }, function(){
+            paused = false;
+        });
+        
+        //dont animate if there are not enough elements
+        if (amount < 4) return;
+        
+        setInterval(function() {
+            
+            //add first element to the end
+            $('.project:eq(0)').clone().appendTo('#projects');
+                       
+            if (!paused) $('#projects').animate({"left" : -width}, "{{ projects_animation_speed }}", function(){
+                //remove it after we finish animating and reset left
+                $('#projects').css({"left" : 0});
+                $('.project:eq(0)').remove();
+            });
+        }, "{{ projects_interval }}");
+    });
+</script>
+
+<div id ="project-slider">
+    <div id="projects">
+        {% for project in projects %}
+        <div class="project">
+            <img src="{{ asset('img/magnadude.jpg') }}" alt="{{ project.title }}"/>
+            <div class="title-wrapper">
+                <div class="project-title">{{ project.title }}</div>
+                <div class="project-subtitle">{{ project.subtitle }}</div>
+            </div>
+            <div class="project-intro">{{ project.intro }}</div>
         </div>
-        <div class="project-intro">{{ project.intro }}</div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 <hr/>
