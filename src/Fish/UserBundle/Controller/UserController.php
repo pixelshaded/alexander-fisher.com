@@ -49,6 +49,10 @@ class UserController extends Controller
      */
     public function registerAction(Request $request)
     {
+        if (!$this->container->getParameter('registration_enabled')){
+            throw $this->createNotFoundException();
+        }
+        
         $user = new User();
         $form = $this->createForm(new RegisterType(), $user);
         
