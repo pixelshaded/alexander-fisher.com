@@ -101,7 +101,9 @@
         {% for project in projects %}
         <div class="project">
             {% if project.gallery and project.gallery.cover %}
-                <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_thumb') }}" alt="{{ project.gallery.cover.alt }}"/>
+                <a href="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) }}" rel="lightbox">
+                    <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_thumb') }}" alt="{{ project.gallery.cover.alt }}"/>
+                </a>
             {% else %}
                 <img src="#" alt="cover"/>
             {% endif %}
