@@ -4,6 +4,7 @@ namespace Fish\PortfolioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Fish\PortfolioBundle\Entity\Gallery;
 
 /**
  * Fish\PortfolioBundle\Entity\Project
@@ -79,6 +80,11 @@ class Project
      * @ORM\ManyToOne(targetEntity="Category")
      */
     private $category;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Gallery")
+     */
+    private $gallery;
 
 
     /**
@@ -204,5 +210,15 @@ class Project
     {
         $this->category = $category;
         $category->addProject($this);
+    }
+    
+    public function setGallery(Gallery $gallery)
+    {
+        $this->gallery = $gallery;
+    }
+    
+    public function getGallery()
+    {
+        return $this->gallery;
     }
 }

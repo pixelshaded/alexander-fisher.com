@@ -68,3 +68,41 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+            
+# Vich Uploader Configuration
+vich_uploader:
+    db_driver: orm
+    twig: true
+    mappings:
+        gallery_image:
+            upload_destination: %kernel.root_dir%/../web/img/uploads/gallery-images
+            delete_on_remove: true
+            inject_on_load: true
+            namer: imgnamer.service
+
+#Liip Imagine Configuration
+liip_imagine:
+    driver:               gd
+    web_root:             %kernel.root_dir%/../web
+    #data_root:            %liip_imagine.web_root%
+    cache_prefix:         /media/cache
+    cache:                web_path
+    data_loader:          filesystem
+    controller_action:    liip_imagine.controller:filterAction
+    formats:              []
+    filter_sets:
+        slideshow_thumb:
+            quality: 100
+            path: /slideshow-thumbs/
+            filters:
+                thumbnail: { size: [310, 165], mode: outbound }
+        slideshow_slide:
+            quality: 100
+            path: /slideshow-slides/
+            filters:
+                thumbnail: { size: [650, 360], mode: outbound }
+        project_thumb:
+            quality: 100
+            path: /project-thumbs/
+            filters:
+                thumbnail: { size: [300, 170], mode: outbound }

@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <h1><a href="{{ path('admin_gallery_index') }}">Galleries</a> > {{gallery.title}}</h1>
+        {% if gallery.cover %}
+            <div>
+                <img src="{{ asset(gallery.cover.path ~ gallery.cover.filename) }}" alt="{{ gallery.cover.alt }}" />
+            </div>
+        {% else %}
+            <p>No Cover Selected</p>
+        {% endif %}
+        <a href="{{ path('admin_gallery_new_image', {'slug' : gallery.slug}) }}">Add Image+</a>
+        <div>
+            {% for image in gallery.images %}
+                <img src="{{ asset(image.path ~ image.filename) | imagine_filter('project_thumb') }}" alt="{{ image.alt }}" />
+            {% endfor %}
+        </div>
+        <a href="{{ path('admin_gallery_new_image', {'slug' : gallery.slug}) }}">Add Image+</a>
+    </div>
+{% endblock %}

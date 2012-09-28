@@ -6,7 +6,7 @@
     <div id="slideshow-container">
         <div id="slideshow">
             <div id="image-box">
-                <div id="current-image"><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></div>
+                <div id="current-image"><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_slide')}}" alt="{{ projects[0].title }}"/></div>
                 <div class="title-wrapper">
                     <div class="project-title">{{ projects[0].title }}</div>
                     <div class="project-subtitle">{{ projects[0].subtitle }}</div>
@@ -15,10 +15,10 @@
             </div>
             <div id="carousel">
                 <ul>
-                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
-                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
-                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
-                    <li><img src="{{ asset('img/magnadude.jpg') }}" alt="{{ projects[0].title }}"/></li>
+                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
+                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
+                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
+                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
                 </ul>
             </div>
         </div>
@@ -91,7 +91,7 @@
     <div id="projects">
         {% for project in projects %}
         <div class="project">
-            <img src="{{ asset('img/magnadude.jpg') }}" alt="{{ project.title }}"/>
+            <img src="{{ asset('img/magnadude.jpg') | imagine_filter('project_thumb') }}" alt="{{ project.title }}"/>
             <div class="title-wrapper">
                 <div class="project-title">{{ project.title }}</div>
                 <div class="project-subtitle">{{ project.subtitle }}</div>

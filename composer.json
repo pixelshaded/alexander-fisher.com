@@ -18,7 +18,11 @@
         "sensio/generator-bundle": "2.1.*",
         "stof/doctrine-extensions-bundle": "1.1.x-dev",
         "jms/security-extra-bundle": "1.2.*",
-        "jms/di-extra-bundle": "1.1.*"
+        "jms/di-extra-bundle": "1.1.*",
+        "liip/imagine-bundle": "dev-master",
+        "vich/uploader-bundle": "0.5.1",
+        "knplabs/gaufrette" : "dev-master",
+        "knplabs/knp-gaufrette-bundle" : "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

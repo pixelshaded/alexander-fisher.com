@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+{% block content %}
+    <div class="content-wrapper">
+        <h1>Galleries</h1>
+        <a href="{{ path('admin_gallery_new') }}">New+</a>
+        <ul>
+            {% for gallery in galleries %}
+                <li>
+                    <div><a href="{{ path('admin_gallery_show', {'slug': gallery.slug}) }}">{{gallery.title}}</a></div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ path('admin_gallery_new') }}">New+</a>
+    </div>
+{% endblock %}

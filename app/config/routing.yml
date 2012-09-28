@@ -7,6 +7,10 @@ fish_portfolio:
     resource: "@FishPortfolioBundle/Controller/"
     type:     annotation
     prefix:   /
+    
+_imagine:
+    resource: .
+    type:     imagine
 
 # Internal routing configuration to handle ESI
 #_internal:
