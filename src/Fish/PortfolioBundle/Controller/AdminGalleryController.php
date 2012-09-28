@@ -125,7 +125,7 @@ class AdminGalleryController extends Controller
                 }
                 $filename.= '.' . $extension;
                 
-                $file->move($this->get('kernel')->getRootDir() . '/../web/img/uploads', $filename);
+                $file->move($this->get('kernel')->getRootDir() . '/../web/' . $this->container->getParameter('img_upload_dir'), $filename);
                 
                 $image->setFilename($filename);
                 $image->setGallery($gallery);

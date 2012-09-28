@@ -15,7 +15,7 @@ class UploadPathInjectorService
     
     public function __construct($path)
     {
-        $this->path = $path;
+        $this->path = $path . '/';
     }
     
     public function postLoad(LifecycleEventArgs $args)
