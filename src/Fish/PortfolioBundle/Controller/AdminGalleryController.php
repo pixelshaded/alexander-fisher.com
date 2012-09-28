@@ -81,7 +81,7 @@ class AdminGalleryController extends Controller
         
         if (!$gallery)
         {
-            return $this->createNotFoundException('Could not find gallery.');
+            throw $this->createNotFoundException('Could not find gallery.');
         }
         
         $form = $this->createForm(new GalleryType(), $gallery);
@@ -268,7 +268,7 @@ class AdminGalleryController extends Controller
         
         if (!$gallery || !$image)
         {
-            return $this->createNotFoundException('Could not find image or gallery');
+            throw $this->createNotFoundException('Could not find image or gallery');
         }
         
         $form = $this->createFormBuilder()->getForm();
