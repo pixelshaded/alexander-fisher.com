@@ -111,7 +111,9 @@ class Gallery
     
     public function getCover()
     {
-        return $this->cover;
+        if ($this->cover) return $this->cover;
+        else if ($this->images[0]) return $this->images[0];
+        else return null;
     }
     
     public function setCover(Image $cover)

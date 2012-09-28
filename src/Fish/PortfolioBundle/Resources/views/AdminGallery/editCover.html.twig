@@ -1,12 +1,28 @@
 {% extends '::base.html.twig' %}
-{% block title %}Edit Category{% endblock %}
+{% block title %}Delete Image{% endblock %}
 {% block content %}
 <div class="content-wrapper">
-    <h1><a href="{{ path('admin_category_index') }}">Categories</a> > Edit > {{category.title}}</h1>
+    <h1><a href="{{ path('admin_gallery_index') }}">Galleries</a> > <a href="{{ path('admin_gallery_show', {'slug' : gallery.slug}) }}">{{gallery.title}}</a> > Change Cover</h1>
     
-    <form action="{{ path('admin_category_edit', {'slug' : category.slug}) }}" method="post" {{ form_enctype(form) }}>
+    <div class="cover-compare">
+        <div class="thumbnail">
+            <p>Old</p>
+            <a href="{{ asset(gallery.cover.path ~ gallery.cover.filename) }}" rel="lightbox[group]">
+                <img src="{{ asset(gallery.cover.path ~ gallery.cover.filename) | imagine_filter('admin_thumb') }}" alt="{{ gallery.cover.alt }}" class="cover" />
+            </a>
+        </div>
+        <div class="thumbnail">
+            <p>New</p>
+            <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+                <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}" {% if image == image.gallery.cover %}class="cover"{%endif%} />
+            </a>
+        </div>
+    </div>
+    
+    <form class='delete' action="{{ path('admin_gallery_edit_cover', {'slug' : gallery.slug, 'id' : image.id}) }}" method="post">
         {{ form_widget(form) }}
-        <p><button type="submit">Update</button></p>
+        Are you sure you want to update the cover for gallery "{{image.gallery.title}}"?
+        <p><button type="submit">Yes</button><a href="{{ path('admin_gallery_show', {'slug' : image.gallery.slug}) }}"><button type="button">No</button></a></p>
     </form>
 </div>
 {% endblock %}

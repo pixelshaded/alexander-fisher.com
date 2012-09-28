@@ -95,3 +95,8 @@ liip_imagine:
             path: /project-thumbs/
             filters:
                 thumbnail: { size: [300, 170], mode: outbound }
+        admin_thumb:
+            quality: 100
+            path: /admin-thumbs/
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound }
