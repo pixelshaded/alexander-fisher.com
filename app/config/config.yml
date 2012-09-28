@@ -68,17 +68,6 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
-            
-# Vich Uploader Configuration
-vich_uploader:
-    db_driver: orm
-    twig: true
-    mappings:
-        gallery_image:
-            upload_destination: %kernel.root_dir%/../web/img/uploads/gallery-images
-            delete_on_remove: true
-            inject_on_load: true
-            namer: imgnamer.service
 
 #Liip Imagine Configuration
 liip_imagine:
