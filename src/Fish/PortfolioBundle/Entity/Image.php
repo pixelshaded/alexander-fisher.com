@@ -26,7 +26,7 @@ class Image
     
     /**
      * @Assert\File(
-     *     maxSize="1M",
+     *     maxSize="2M",
      *     mimeTypes={"image/png", "image/jpeg"}
      * )
      *
