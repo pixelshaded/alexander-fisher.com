@@ -6,19 +6,26 @@
     <div id="slideshow-container">
         <div id="slideshow">
             <div id="image-box">
-                <div id="current-image"><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_slide')}}" alt="{{ projects[0].title }}"/></div>
+                <div id="current-image">
+                    <a href="{{ asset(projects[0].gallery.cover.path ~ projects[0].gallery.cover.filename) }}" rel="lightbox[group]">
+                        <img src="{{ asset(projects[0].gallery.cover.path ~ projects[0].gallery.cover.filename) | imagine_filter('slideshow_slide')}}" alt="{{ projects[0].gallery.cover.alt }}"/>
+                    </a>
+                </div>
                 <div class="title-wrapper">
-                    <div class="project-title">{{ projects[0].title }}</div>
+                    <div class="project-title"><a href=" {{ path('project_show', {'slug' : projects[0].slug }) }}">{{ projects[0].title }}</a></div>
                     <div class="project-subtitle">{{ projects[0].subtitle }}</div>
                     <div class="project-tagline">{{ projects[0].tagline }}</div>
                 </div>
             </div>
             <div id="carousel">
                 <ul>
-                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
-                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
-                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
-                    <li><img src="{{ asset('img/magnadude.jpg') | imagine_filter('slideshow_thumb')}}" alt="{{ projects[0].title }}"/></li>
+                    {% for image in projects[0].gallery.images %}
+                        <li>
+                            <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+                                <img src="{{ asset(image.path ~ image.filename) | imagine_filter('slideshow_thumb')}}" alt="{{ image.alt }}"/>
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -91,7 +98,11 @@
     <div id="projects">
         {% for project in projects %}
         <div class="project">
-            <img src="{{ asset('img/magnadude.jpg') | imagine_filter('project_thumb') }}" alt="{{ project.title }}"/>
+            {% if project.gallery and project.gallery.cover %}
+                <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_thumb') }}" alt="{{ project.gallery.cover.alt }}"/>
+            {% else %}
+                <img src="#" alt="cover"/>
+            {% endif %}
             <div class="title-wrapper">
                 <div class="project-title">{{ project.title }}</div>
                 <div class="project-subtitle">{{ project.subtitle }}</div>
