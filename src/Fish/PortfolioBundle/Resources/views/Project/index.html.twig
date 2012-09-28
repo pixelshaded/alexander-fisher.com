@@ -104,7 +104,7 @@
                 <img src="#" alt="cover"/>
             {% endif %}
             <div class="title-wrapper">
-                <div class="project-title">{{ project.title }}</div>
+                <div class="project-title"><a href="{{ path('project_show', {'slug' : project.slug }) }}">{{ project.title }}</a></div>
                 <div class="project-subtitle">{{ project.subtitle }}</div>
             </div>
             <div class="project-intro">{{ project.intro }}</div>

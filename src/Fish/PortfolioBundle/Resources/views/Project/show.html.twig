@@ -5,16 +5,46 @@
 <div class="content-wrapper">
     <div id="gallery">
         <div id="gallery-image">
-            <img src="{{ asset('img/magnadude.jpg') }}" alt="{{ project.title }}"/>
+            {% if project.gallery and project.gallery.cover %}
+                <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_thumb') }}" alt="{{ project.gallery.cover.alt }}"/>
+            {% else %}
+                <img src="#" alt="cover"/>
+            {% endif %}
         </div>
         <div class="title-wrapper">
             <div class="project-title">
             {{project.title}}
             </div>
-            <div class="project-tagline">
-                {{project.tagline}}
+            <div class="project-gallery">
+                {% if project.gallery and project.gallery.images %}
+                    <a href="{{ asset(project.gallery.images[0].path ~ project.gallery.images[0].filename) }}" rel="lightbox[group]">Gallery</a>
+                {% else %}
+                    {{project.subtitle}}
+                {% endif %}
             </div>
         </div>
+    </div>
+    <!-- <div id="gallery-slideshow">
+        <ul>
+        {% for image in project.gallery.images %}
+            <li class="gallery-image">
+                <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+                    <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}" />
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div> -->
+    <div id="gallery-slideshow">
+        <ul class='gallery-lightbox'>
+        {% for image in project.gallery.images %}
+            {% if loop.index != 1 %}
+                <li class="gallery-image">
+                    <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]"></a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
     </div>
     <div id="project-content">
         {{project.content|raw}}
