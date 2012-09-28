@@ -37,14 +37,12 @@ class Image
     protected $path;
 
     /**
-     * @var string $imageName
      *
      * @ORM\Column(name="filename", type="string", length=255)
      */
     private $filename;
     
     /**
-     * @var string $imageName
      *
      * @ORM\Column(name="alt", type="string", length=255)
      */

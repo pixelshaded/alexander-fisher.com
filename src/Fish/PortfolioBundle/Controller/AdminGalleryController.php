@@ -114,7 +114,9 @@ class AdminGalleryController extends Controller
             {
                 // use the original file name
                 $file = $image->getUpload();
-                $alt = str_replace(array('.', ' '), '', $file->getClientOriginalName());
+                $alt = pathinfo($file->getClientOriginalName());
+                $alt = $alt['filename'];
+                $alt = str_replace(array('.', ' '), '', $alt);
                 $filename = uniqid() . '-' . $alt;
 
                 // compute a random name and try to guess the extension (more secure)

@@ -12,12 +12,6 @@ class GalleryType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('cover', 'entity', array(
-                'class' => 'FishPortfolioBundle:Image',
-                'property' => 'imageName',
-                'empty_value' => '-- NONE --',
-                'required' => false
-            ))
         ;
     }
 

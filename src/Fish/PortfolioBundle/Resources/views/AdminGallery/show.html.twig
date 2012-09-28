@@ -13,7 +13,9 @@
         <a href="{{ path('admin_gallery_new_image', {'slug' : gallery.slug}) }}">Add Image+</a>
         <div>
             {% for image in gallery.images %}
-                <img src="{{ asset(image.path ~ image.filename) | imagine_filter('project_thumb') }}" alt="{{ image.alt }}" />
+                <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+                    <img src="{{ asset(image.path ~ image.filename) | imagine_filter('project_thumb') }}" alt="{{ image.alt }}" />
+                </a>
             {% endfor %}
         </div>
         <a href="{{ path('admin_gallery_new_image', {'slug' : gallery.slug}) }}">Add Image+</a>
