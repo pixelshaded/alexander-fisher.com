@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
         $projects = $em->getRepository('FishPortfolioBundle:Project')->findAll();
         
-        if ($projects) $showcase = array_rand($projects, 1);
+        if ($projects) $showcase = $projects[array_rand($projects, 1)];
         else $showcase = null;
 
         return array(

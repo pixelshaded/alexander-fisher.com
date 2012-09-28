@@ -4,7 +4,7 @@
 {% block header %}
     {{ parent() }}
     
-    {% if showcase and showcase.gallery and showcase.gallery.length > 2 %}
+    {% if showcase and showcase.gallery and showcase.gallery|length > 2 %}
     <div id="slideshow-container">
         <div id="slideshow">
             <div id="image-box">
