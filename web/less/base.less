@@ -442,7 +442,17 @@ a:link, a:visited, a:hover, a:active
                 color: white;
                 text-transform: uppercase;
                 padding-left: 20px;
+                padding-bottom: 10px;
                 text-shadow: 2px 2px 2px #000;
+                width: 640px;
+                
+                background: -moz-linear-gradient(left,  rgba(160,160,160,0.65) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(160,160,160,0.65)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(left,  rgba(160,160,160,0.65) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(left,  rgba(160,160,160,0.65) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(left,  rgba(160,160,160,0.65) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+                background: linear-gradient(to right,  rgba(160,160,160,0.65) 0%,rgba(255,255,255,0) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6a0a0a0', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
                 
                 .project-title
                 {
