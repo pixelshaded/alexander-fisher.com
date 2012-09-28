@@ -8,7 +8,7 @@
         <div id="slideshow">
             <div id="image-box">
                 <div id="current-image">
-                    <a href="{{ asset(showcase.gallery.cover.path ~ showcase.gallery.cover.filename) }}" rel="lightbox[group]">
+                    <a href="{{ asset(showcase.gallery.cover.path ~ showcase.gallery.cover.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
                         <img src="{{ asset(showcase.gallery.cover.path ~ showcase.gallery.cover.filename) | imagine_filter('slideshow_slide')}}" alt="{{ showcase.gallery.cover.alt }}"/>
                     </a>
                 </div>
@@ -22,7 +22,7 @@
                 <ul>
                     {% for image in showcase.gallery.images %}
                         <li>
-                            <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+                            <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
                                 <img src="{{ asset(image.path ~ image.filename) | imagine_filter('slideshow_thumb')}}" alt="{{ image.alt }}"/>
                             </a>
                         </li>
@@ -101,7 +101,7 @@
         {% for project in projects %}
         <div class="project">
             {% if project.gallery and project.gallery.cover %}
-                <a href="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) }}" rel="lightbox">
+                <a href="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('lightbox') }}" rel="lightbox">
                     <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_thumb') }}" alt="{{ project.gallery.cover.alt }}"/>
                 </a>
             {% else %}

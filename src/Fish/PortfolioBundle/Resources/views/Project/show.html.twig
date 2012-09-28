@@ -17,7 +17,7 @@
             </div>
             <div class="project-gallery">
                 {% if project.gallery and project.gallery.images %}
-                    <a href="{{ asset(project.gallery.images[0].path ~ project.gallery.images[0].filename) }}" rel="lightbox[group]">Gallery</a>
+                    <a href="{{ asset(project.gallery.images[0].path ~ project.gallery.images[0].filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">Gallery</a>
                 {% else %}
                     {{project.subtitle}}
                 {% endif %}
@@ -28,7 +28,7 @@
         <ul>
         {% for image in project.gallery.images %}
             <li class="gallery-image">
-                <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+                <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
                     <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}" />
                 </a>
             </li>
@@ -40,7 +40,7 @@
         {% for image in project.gallery.images %}
             {% if loop.index != 1 %}
                 <li class="gallery-image">
-                    <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]"></a>
+                    <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]"></a>
                 </li>
             {% endif %}
         {% endfor %}

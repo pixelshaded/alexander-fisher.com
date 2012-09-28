@@ -5,7 +5,7 @@
     <h1><a href="{{ path('admin_gallery_index') }}">Galleries</a> > <a href="{{ path('admin_gallery_show', {'slug' : image.gallery.slug}) }}">{{image.gallery.title}}</a> > Delete Image</h1>
     
     <div class="thumbnail">
-        <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+        <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox')}}" rel="lightbox[group]">
             <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}" {% if image == image.gallery.cover %}class="cover"{%endif%} />
         </a>
     </div>

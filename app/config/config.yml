@@ -105,3 +105,8 @@ liip_imagine:
             path: /project-covers/
             filters:
                 thumbnail: { size: [940, 530], mode: outbound }
+        lightbox:
+            quality: 100
+            path: /lightbox-images/
+            filters:
+                relative_resize: { widen: 1024 }

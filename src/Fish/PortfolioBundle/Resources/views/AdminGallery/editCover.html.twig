@@ -7,13 +7,13 @@
     <div class="cover-compare">
         <div class="thumbnail">
             <p>Old</p>
-            <a href="{{ asset(gallery.cover.path ~ gallery.cover.filename) }}" rel="lightbox[group]">
+            <a href="{{ asset(gallery.cover.path ~ gallery.cover.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
                 <img src="{{ asset(gallery.cover.path ~ gallery.cover.filename) | imagine_filter('admin_thumb') }}" alt="{{ gallery.cover.alt }}" class="cover" />
             </a>
         </div>
         <div class="thumbnail">
             <p>New</p>
-            <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
+            <a href="{{ asset(image.path ~ image.filename)| imagine_filter('lightbox') }}" rel="lightbox[group]">
                 <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}" {% if image == image.gallery.cover %}class="cover"{%endif%} />
             </a>
         </div>
