@@ -6,7 +6,7 @@
     <div id="gallery">
         <div id="gallery-image">
             {% if project.gallery and project.gallery.cover %}
-                <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_thumb') }}" alt="{{ project.gallery.cover.alt }}"/>
+                <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_cover') }}" alt="{{ project.gallery.cover.alt }}"/>
             {% else %}
                 <img src="#" alt="cover"/>
             {% endif %}

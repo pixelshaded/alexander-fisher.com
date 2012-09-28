@@ -3,23 +3,25 @@
 
 {% block header %}
     {{ parent() }}
+    
+    {% if showcase and showcase.gallery and showcase.gallery.length > 2 %}
     <div id="slideshow-container">
         <div id="slideshow">
             <div id="image-box">
                 <div id="current-image">
-                    <a href="{{ asset(projects[0].gallery.cover.path ~ projects[0].gallery.cover.filename) }}" rel="lightbox[group]">
-                        <img src="{{ asset(projects[0].gallery.cover.path ~ projects[0].gallery.cover.filename) | imagine_filter('slideshow_slide')}}" alt="{{ projects[0].gallery.cover.alt }}"/>
+                    <a href="{{ asset(showcase.gallery.cover.path ~ showcase.gallery.cover.filename) }}" rel="lightbox[group]">
+                        <img src="{{ asset(showcase.gallery.cover.path ~ showcase.gallery.cover.filename) | imagine_filter('slideshow_slide')}}" alt="{{ showcase.gallery.cover.alt }}"/>
                     </a>
                 </div>
                 <div class="title-wrapper">
-                    <div class="project-title"><a href=" {{ path('project_show', {'slug' : projects[0].slug }) }}">{{ projects[0].title }}</a></div>
-                    <div class="project-subtitle">{{ projects[0].subtitle }}</div>
-                    <div class="project-tagline">{{ projects[0].tagline }}</div>
+                    <div class="project-title"><a href=" {{ path('project_show', {'slug' : showcase.slug }) }}">{{ showcase.title }}</a></div>
+                    <div class="project-subtitle">{{ showcase.subtitle }}</div>
+                    <div class="project-tagline">{{ showcase.tagline }}</div>
                 </div>
             </div>
             <div id="carousel">
                 <ul>
-                    {% for image in projects[0].gallery.images %}
+                    {% for image in showcase.gallery.images %}
                         <li>
                             <a href="{{ asset(image.path ~ image.filename) }}" rel="lightbox[group]">
                                 <img src="{{ asset(image.path ~ image.filename) | imagine_filter('slideshow_thumb')}}" alt="{{ image.alt }}"/>
@@ -30,6 +32,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
