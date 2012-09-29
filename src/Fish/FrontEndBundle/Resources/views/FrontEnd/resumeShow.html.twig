@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Resume{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('less/resume.less') }}" rel='stylesheet/less' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Exo:200,400,600,900' rel='stylesheet' type='text/css'> -->
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        {% include '::resume.html.twig' %}
+    </div>
+{% endblock %}

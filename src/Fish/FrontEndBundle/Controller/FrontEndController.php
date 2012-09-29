@@ -13,7 +13,16 @@ class FrontEndController extends Controller
      * @Route("/resume", name="fish_frontend_resume")
      * @Template()
      */
-    public function resumeAction()
+    public function resumeShowAction()
+    {
+        return array();
+    }
+    
+    /**
+     * @Route("/resume-print", name="fish_frontend_resume_show")
+     * @Template()
+     */
+    public function resumePrintAction()
     {
         return array();
     }
@@ -31,6 +40,7 @@ class FrontEndController extends Controller
                 ->add('antibot', 'choice', array(
                     'label' => 'Antibot',
                     'choices' => array(
+                        '' => '',
                         'red' => 'The sky is red', 
                         'purple' => 'The sky is purple',
                         'blue' => 'The sky is blue',
