@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}Resume{% endblock %}
+
 {% block stylesheets %}
 {{ parent() }}
 <link href="{{ asset('less/resume.less') }}" rel='stylesheet/less' type='text/css'>
@@ -95,9 +97,7 @@
                         <p><span class="slashes">//</span> Skinned some of the models for their prototype strategy game.</p>
                     </td>
                 </tr>
-            </table>
-
-            <table class="additional">
+                
                 <tr>
                     <td class="subtitle">Additional Work</td>
                     <td>

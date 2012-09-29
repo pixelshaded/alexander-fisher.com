@@ -28,10 +28,11 @@
                                 <p>Programmer Extraordinaire</p>
                             </div>
                             <div id="socialbar">
-                                <a href="http://www.linkedin.com/in/alexanderffisher"><img src="{{ asset('img/linkedin.gif') }}" alt="linkedin"></a>
-                                <!-- <a href="#"><img src="{{ asset('img/facebook-icon.jpg') }}" alt="facebook"></a> -->
-                                <a href="https://twitter.com/pixelshaded"><img src="{{ asset('img/twitter-icon.jpg') }}" alt="twitter"></a>
-                                <!-- <a href="#"><img src="img/google-plus.jpg" alt="google-plus"></a> -->
+                                <a href="https://github.com/pixelshaded" target="_blank"><img src="{{ asset('img/git-icon.gif') }}" alt="github"></a>
+                                <a href="http://www.linkedin.com/in/alexanderffisher" target="_blank"><img src="{{ asset('img/linkedin.gif') }}" alt="linkedin"></a>
+                                <!-- <a href="#"  target="_blank"><img src="{{ asset('img/facebook-icon.jpg') }}" alt="facebook"></a> -->
+                                <a href="https://twitter.com/pixelshaded" target="_blank"><img src="{{ asset('img/twitter-icon.jpg') }}" alt="twitter"></a>
+                                <!-- <a href="#"  target="_blank"><img src="img/google-plus.jpg" alt="google-plus"></a> -->
                             </div>
                         </div>
                     </div>
@@ -40,10 +41,10 @@
                             <ul>
                                 <li><a href="{{ path('project_index') }}">Home</a></li>
                                 <li><a href="{{ path('fish_frontend_demoreel') }}">Demo Reel</a></li>
-                                <li><a href="{{ path('fish_frontend_codesamples') }}">Code Samples</a></li>                                
+                                <li><a href="https://github.com/pixelshaded" target="_blank">Code Samples</a></li>                                
                                 {% render "FishPortfolioBundle:Category:categoryNav" %}
                                 <li><a href="{{ path('fish_frontend_resume') }}">Resume</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{{ path('fish_frontend_contact') }}">Contact Me</a></li>
                                 <!-- <li><a href="#">Bio</a></li>
                                 <li><a href="#">Tutorials</a></li> -->
                                 {% if is_granted('ROLE_USER') %} 
@@ -78,10 +79,10 @@
                             <ul>
                                 <li><a href="{{ path('project_index') }}">Home</a></li>
                                 <li><a href="{{ path('fish_frontend_demoreel') }}">Demo Reel</a></li>
-                                <li><a href="{{ path('fish_frontend_codesamples') }}">Code Samples</a></li>  
+                                <li><a href="https://github.com/pixelshaded" target="_blank">Code Samples</a></li>  
                                 {% render "FishPortfolioBundle:Category:categoryNav" %}
-                                <li><a href="#">Resume</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{{ path('fish_frontend_resume') }}">Resume</a></li>
+                                <li><a href="{{ path('fish_frontend_contact') }}">Contact Me</a></li>
                                 <!-- <li><a href="#">Bio</a></li>
                                 <li><a href="#">Tutorials</a></li> -->
                             </ul>
