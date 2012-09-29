@@ -19,7 +19,7 @@ class FrontEndController extends Controller
     }
     
     /**
-     * @Route("/resume-print", name="fish_frontend_resume_show")
+     * @Route("/resume-print", name="fish_frontend_resume_print")
      * @Template()
      */
     public function resumePrintAction()
