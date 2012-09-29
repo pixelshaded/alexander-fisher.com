@@ -22,7 +22,8 @@ class AppKernel extends Kernel
             new Fish\PortfolioBundle\FishPortfolioBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Fish\UserBundle\FishUserBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle()
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Fish\FrontEndBundle\FishFrontEndBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

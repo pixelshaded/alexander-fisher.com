@@ -1,0 +1,128 @@
+@bluetext: #154168;
+@greenbg: #93c35c;
+@greentext: #b2d28b;
+
+#resume
+{
+    
+    font-family: 'Helvetica';
+    vertical-align: middle;
+    color: #6d6e71;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px 0;
+    
+    p
+    {
+        padding: 0;
+        margin: 0;
+    }
+    
+    table
+    {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    
+    td
+    {
+        padding: 10px 0;
+    }
+    
+    table tr td:first-child
+    {
+        width: 270px;
+        padding-right: 10px;
+    }
+    
+    table tr td:nth-child(2)
+    {        
+        padding-left: 10px;
+        
+        line-height: 24px;
+    }
+    
+    .title, .subtitle
+    {
+        text-align: right;
+        font-weight: bold;
+    }
+    
+    .title
+    {
+        height: 40px;
+        background-color: @greenbg;
+        color: white;
+        font-size: 26px;
+        padding: 0px 0px;
+    }
+    
+    .subtitle
+    {
+        vertical-align: top;
+        color: @bluetext;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+    
+    .slashes
+    {
+        color: @greentext;
+        font-wight: bold;
+    }
+    
+    .title:after
+    {
+        content: " //";
+    }
+    
+    #resume-header
+    {
+        margin-bottom: 90px;
+        position: relative;
+        height: 60px;
+        
+        td
+        {
+            padding: 0;
+        }
+        
+        #firstname
+        {
+            padding-right: 10px;
+        }
+        
+        #lastname
+        {
+            padding-left: 10px;
+        }
+        
+        #firstname, #lastname
+        {
+            height: 60px;
+            font-size: 40px;
+        }
+        
+        #contact
+        {
+            text-align: right;
+        }
+        
+        #website, #phone, #lastname
+        {
+            color: @bluetext;
+            font-weight: bold;
+        }
+    }
+    
+    #objective
+    {
+        
+        line-height: 140%;
+        
+        td:nth-child(2)
+        {
+            padding: 0 0 0 10px;
+        }
+    }
+}
