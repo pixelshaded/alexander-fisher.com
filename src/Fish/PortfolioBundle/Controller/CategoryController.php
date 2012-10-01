@@ -12,7 +12,7 @@ use Fish\PortfolioBundle\Entity\Category;
 /**
  * Category controller.
  *
- * @Route("/categories")
+ * @Route("/portfolio/categories")
  */
 class CategoryController extends Controller
 {

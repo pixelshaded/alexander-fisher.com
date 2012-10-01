@@ -40,7 +40,7 @@ class ProjectController extends Controller
     /**
      * Finds and displays a Project entity.
      *
-     * @Route("/projects/{slug}/", name="project_show")
+     * @Route("/portfolio/{slug}/", name="project_show")
      * @Template()
      */
     public function showAction($slug)
