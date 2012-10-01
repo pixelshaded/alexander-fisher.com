@@ -68,9 +68,9 @@ class FrontEndController extends Controller
                 else
                 {
                     $message = \Swift_Message::newInstance()
-                        ->setSubject($data['subject'])
+                        ->setSubject($data['email'] . ': ' . $data['subject'])
                         ->setFrom($data['email'])
-                        ->setTo('mail@alexander-fisher.com')
+                        ->setTo($this->container->getParameter('contact_email'))
                         ->setBody($data['message'])
                     ;
                     $this->get('mailer')->send($message);

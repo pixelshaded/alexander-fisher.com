@@ -13,4 +13,5 @@ parameters:
     secret: 61647e5388f185c578f5a6aa658710a7f
     database_path: ~
     img_upload_dir: img/uploads
+    contact_email: ~
     registration_enabled: false
