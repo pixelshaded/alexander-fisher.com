@@ -87,12 +87,12 @@ class FrontEndController extends Controller
     }
     
     /**
-     * Route("/code-samples", name="fish_frontend_codesamples")
+     * @Route("/code-samples", name="fish_frontend_codesamples")
      * @Template()
      */
     public function codeSamplesAction()
     {
-        return array();
+        return $this->redirect('https://github.com/pixelshaded');
     }
     
     /**
