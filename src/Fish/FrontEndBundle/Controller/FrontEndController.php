@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class FrontEndController extends Controller
 {
@@ -101,5 +102,14 @@ class FrontEndController extends Controller
     public function demoReelAction()
     {
         return array();
+    }
+    
+    /**
+     * @Route("/google4bfeecd7b5fca38a.html", name="fish_frontend_verifyGoogleApps")
+     * @Template()
+     */
+    public function verifyGoogleAppsAction()
+    {
+        return new Response('google-site-verification: google4bfeecd7b5fca38a.html');
     }
 }

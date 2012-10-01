@@ -3,6 +3,8 @@ jms_security_extra:
     expressions: true
 
 security:
+    access_decision_manager:
+        strategy: unanimous
     encoders:
         Fish\UserBundle\Entity\User:
             algorithm: sha512
