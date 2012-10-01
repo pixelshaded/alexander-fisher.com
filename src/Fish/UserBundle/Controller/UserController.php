@@ -24,15 +24,6 @@ class UserController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
         
-        $em = $this->getDoctrine()->getManager();
-        $ip = $request->getClientIp();
-        $blacklistip = $em->getRepository('FishUserBundle:BlacklistIP')->findOneBy(array('address' => $ip));
-        
-        if ($blacklistip && $blacklistip->getAttempts() > $this->container->getParameter('failed_login_limit'))
-        {
-            throw $this->createNotFoundException();
-        }
-
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR))
         {
@@ -42,21 +33,6 @@ class UserController extends Controller
         {
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
-        }
-        
-        //Track failed log in attempts by IP
-        if ($error)
-        {
-            $blacklistip = $em->getRepository('FishUserBundle:BlacklistIP')->findOneBy(array('address' => $ip));
-            
-            if (!$blacklistip){
-                $blacklistip = new BlacklistIP();
-                $blacklistip->setAddress($ip);
-            }
-            
-            $blacklistip->addAttempt();
-            $em->persist($blacklistip);
-            $em->flush();
         }
         
         $last_username = $session->get(SecurityContext::LAST_USERNAME);

@@ -1,7 +1,7 @@
 services:
-    security.access.blacklist_voter:
-          class: Fish\UserBundle\Security\Authorization\Voter\ClientIpVoter
+    fish.user.blacklist.service:
+          class: Fish\UserBundle\Service\BlacklistService
           arguments: [@service_container]
-          public: false
-          tags:
-              - { name: security.voter }
+    fish.user.provider:
+          class: Fish\UserBundle\Security\User\UserProvider
+          arguments: [@fish.user.blacklist.service, @doctrine.orm.entity_manager]

@@ -3,8 +3,6 @@ jms_security_extra:
     expressions: true
 
 security:
-    access_decision_manager:
-        strategy: unanimous
     encoders:
         Fish\UserBundle\Entity\User:
             algorithm: sha512
@@ -16,8 +14,9 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        administrators:
-            entity: { class: FishUserBundle:User, property: username }
+        users:
+            id: fish.user.provider
+            #entity: { class: FishUserBundle:User, property: username }
 
     firewalls:
         public_area:
@@ -26,6 +25,8 @@ security:
             form_login:
                 login_path: /login
                 check_path: /login_check
+                failure_handler: fish.user.blacklist.service
+                success_handler: fish.user.blacklist.service
             logout:
                 path: /logout
                 target: /
