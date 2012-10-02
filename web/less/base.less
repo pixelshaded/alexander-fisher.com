@@ -6,8 +6,8 @@
         Purpose of the stylesheet follows.
 */
 
-@left-padding: 180px;
-@right-padding: 180px;
+@left-padding: 11.25em;
+@right-padding: 11.25em;
 
 @bluetext: #0087c8;
 @darkgreytext: #333333;
@@ -18,8 +18,12 @@ root {
     display: block;
 }
 
+html { 
+    font-size:100%; 
+}
+
 body {
-    padding: 0 0 30px 0;
+    padding: 0 0 1.875em 0;
     margin: 0;
     font-family: 'Exo', sans-serif;
     font-size: 16px;
@@ -42,13 +46,13 @@ img
 
 iframe
 {
-    margin: 10px auto;
+    margin: 0.625em auto;
     display: block;
 }
 
 hr
 {
-    border: 1px solid #808080;
+    border: 0.062em solid #808080;
     clear: both;
 }
 
@@ -65,24 +69,24 @@ form div
 label
 {
     display: inline-block;
-    width: 100px;
-    margin: 2px 0px;
+    width: 6.25em;
+    margin: 0.125em 0;
     vertical-align: top;
     
 }
 
 input
 {
-    margin: 2px 0px;
-    width: 200px;
+    margin: 0.125em 0;
+    width: 12.5em;
 }
 
 textarea
 {
-    width: 500px;
-    height: 200px;
-    margin: 2px 0px;
-    border: 2px inset; 
+    width: 31.25em;
+    height: 12.5em;
+    margin: 0.125em 0;
+    border: 0.125em inset; 
 }
 
 #header
@@ -95,10 +99,10 @@ textarea
     }
     #info-bar
     {
-        width: 940px;
+        width: 58.75em;
         margin: auto;
         position: relative;
-        padding: 10px 0;
+        padding: 0.625em 0;
     }    
     #namebar
     {
@@ -107,14 +111,14 @@ textarea
             color: @bluetext;
             margin: 0;
             padding: 0;
-            font-size: 40px;
+            font-size: 2.5em;
             font-weight: 900;
             line-height: 90%;
             text-transform: uppercase;
         }
         p:last-child
         {
-            font-size: 16px;
+            font-size: 1em;
             font-weight: 400;
             line-height: 136%;
         }
@@ -122,18 +126,18 @@ textarea
     #socialbar
     {
         position: absolute;
-        right: 0px;
-        bottom: 10px;
+        right: 0;
+        bottom: 0.625em;
     }
     #navbar-container
     {
         //background-color: #9f9f9f;
         background: url('/img/navbar.jpg') repeat;
-        font-size: 16px;
+        font-size: 1em;
     }
     #navbar
     {
-        width: 940px;
+        width: 58.75em;
         margin: auto;
         
         ul
@@ -145,8 +149,8 @@ textarea
         li
         {
             display: inline-block;
-            line-height: 45px;
-            padding-right: 40px;
+            line-height: 2.813em;
+            padding-right: 2.5em;
             position: relative;
             
             ul
@@ -154,9 +158,9 @@ textarea
                 display: none;
                 position: absolute;
                 background-color: #9f9f9f;
-                padding-left: 20px;
-                left: -20px;
-                border: 1px solid #666666;
+                padding-left: 1.25em;
+                left: -1.25emx;
+                border: 0.062em solid #666666;
                 border-top: 0;
                 
                 li
@@ -195,20 +199,20 @@ textarea
 
 #wrapper
 {
-    width: 960px;
+    width: 60em;
     margin: auto;
     
     #content
     {
         .content-wrapper
         {
-            padding: 0px 10px 0 10px;
+            padding: 0 0.625em 0 0.625em;
         }
     
         #category 
         {
     
-            padding: 0 10px 0 10px;
+            padding: 0 0.625em 0 0.625em;
 
             h1, h2
             {
@@ -218,14 +222,13 @@ textarea
 
             h1
             {
-                font-size: 100px;
-                line-height: 130%;
-                margin: 0 0 -20px 0; 
+                font-size: 6.25em;
+                margin: 0 0 -0.25em 0; 
             }
 
             h2
             {
-                font-size: 20px;
+                font-size: 1.25em;
                 font-weight: normal;
                 margin: 0;
             }
@@ -233,20 +236,19 @@ textarea
             p
             {
                 color: #4d4d4d;
-                line-height: 170%;
-                padding: 30px 0 30px 0;
+                padding: 1.875em 0 1.875em 0;
                 margin: 0; 
             }
         }
     
         #project
         {
-            padding: 0 10px 0 10px;
+            padding: 0 0.625em 0 0.625em;
         }
         
         #login-wrapper, #register-wrapper
         {
-            padding: 10px 10px 0 10px;
+            padding: 0.625em 0.625em 0 0.625em;
 
             #login, #register
             {
@@ -257,9 +259,9 @@ textarea
         #aboutme p
         {
             color: @bluetext;
-            padding: 20px 10px 70px 10px;
+            padding: 1.25em 0.625em 4.375em 0.625em;
             margin: 0;
-            font-size: 18px;
+            font-size: 1.125em;
             line-height: 150%;
         }
     }
@@ -269,12 +271,12 @@ textarea
 {
     position: relative;
     font-family: 'Exo', sans-serif;
-    font-size: 18px;
+    font-size: 1.125em;
     clear: both;
     
     #navbar-footer
     {
-        padding-left: 10px;
+        padding-left: 0.625em;
         font-weight: normal;
         
         ul
@@ -285,7 +287,7 @@ textarea
         li
         {
             display: inline-block;
-            padding-right: 20px;
+            padding-right: 1.25em;
         }
         a
         {
@@ -307,7 +309,7 @@ textarea
     #copyright
     {
         position: absolute;
-        padding-right: 10px;
+        padding-right: 0.625em;
         bottom: 0;
         right: 0;
         
@@ -327,12 +329,12 @@ textarea
 
 .category
 {
-    padding: 10px 0px;
+    padding: 0.625em 0;
     
     .category-title
     {
         color: @bluetext;
-        font-size: 20px;
+        font-size: 1.25em;
     }
     
     .category-subtitle
@@ -343,8 +345,8 @@ textarea
 
 form.delete
 {
-    border: 2px solid red;
-    padding: 10px;
+    border: 0.125em solid red;
+    padding: 0.625em;
 }
 
 h1, h2, h3, h4, h5
@@ -360,22 +362,22 @@ a:link, a:visited, a:hover, a:active
 
 #gallery
 {
-    width: 940px;
-    height: 530px;
+    width: 58.75em;
+    height: 33.125em;
     position: relative;
     
     img
     {
-        width: 940px;
-        height: 530px;
+        width: 58.75em;
+        height: 33.125em;
     }
     
     .title-wrapper
     {
-        width: 940px;
+        width: 58.75em;
         position: absolute;
-        bottom: 0px;
-        left: 0px;
+        bottom: 0;
+        left: 0;
         color: white;
         
         background: -moz-linear-gradient(left,  rgba(0,135,200,1) 0%, rgba(0,135,200,0.7) 38%, rgba(0,135,200,0) 80%, rgba(0,135,200,0) 100%); /* FF3.6+ */
@@ -391,15 +393,14 @@ a:link, a:visited, a:hover, a:active
         .project-title
         {
             font-weight: bold;
-            font-size: 100px;
-            line-height: 1em;
-            margin: 16px 0 -12px 16px;
+            font-size: 6.25em;
+            margin: 0 0 -0.25em 0.2em;
         }
         
         .project-gallery
         {
-            font-size: 20px;
-            margin: 0 0 16px 16px;
+            font-size: 1.25em;
+            margin: 0 0 1em 1em;
             
             a
             {
@@ -412,9 +413,9 @@ a:link, a:visited, a:hover, a:active
 #project-slider
 {
     overflow: hidden;
-    width: 960px;
-    height: 350px;
-    margin: 25px 0;
+    width: 60em;
+    height: 21.875em;
+    margin: 1.562em 0;
     position: relative;
     
     #projects
@@ -427,7 +428,7 @@ a:link, a:visited, a:hover, a:active
         .project
         {
             margin: 0;
-            padding: 0 10px;
+            padding: 0 0.625em;
             white-space: normal;
         }
     }
@@ -445,12 +446,12 @@ a:link, a:visited, a:hover, a:active
 {
     //background-color: #3c3c3c;
     background: url('/img/slideshow.jpg') repeat;
-    border-bottom: 8px solid #212121;
+    border-bottom: 0.5em solid #212121;
     
     #slideshow
     {
-        width: 960px;
-        height: 360px;
+        width: 60em;
+        height: 22.5em;
         margin: auto;
         position: relative;
         padding: 0;
@@ -466,18 +467,18 @@ a:link, a:visited, a:hover, a:active
                 left: 0;
                 color: white;
                 text-transform: uppercase;
-                text-shadow: 2px 2px 2px #000;
-                width: 640px;
-                padding-bottom: 10px;
+                text-shadow: 0.125em 0.125em 0.125em #000;
+                width: 40em;
+                padding-bottom: 0.625em;
                 
                 background-color: rgba(0, 0, 0, 0.1);
                 
                 .project-title
                 {
-                    font-size: 70px;
+                    font-size: 4.375em;
                     font-weight: bold;
-                    margin-bottom: -3%;
-                    margin-left: 20px;
+                    margin-bottom: -0.25em;
+                    margin-left: 0.28em;
                     
                     a
                     {
@@ -490,30 +491,30 @@ a:link, a:visited, a:hover, a:active
                         text-decoration: underline;
                     }
                     
-                    width: 640px;
+                    width: 40em;
                 }
                 
                 .project-subtitle
                 {
-                    font-size: 20px;
+                    font-size: 1.25em;
                     font-weight: 600;
-                    width: 640px;
-                    margin-left: 20px;
+                    width: 40em;
+                    margin-left: 1em;
                 }
                 
                 .project-tagline
                 {
-                    font-size: 20px;
+                    font-size: 1.25em;
                     font-weight: 200;
-                    width: 640px;
-                    margin-left: 20px;
+                    width: 40em;
+                    margin-left: 1.25em;
                 }
             }
         
             #current-image, #current-image img
             {
-                width: 640px;
-                height: 360px;
+                width: 40em;
+                height: 22.5em;
                 display: inline-block;
             }
         }
@@ -521,32 +522,32 @@ a:link, a:visited, a:hover, a:active
         #carousel
         {
             
-            width: 320px;
-            height: 360px;
+            width: 20em;
+            height: 22.5em;
             position: absolute;
-            right: 0px;
-            top: 0px;
+            right: 0;
+            top: 0;
             overflow: hidden;
             
             ul
             {
-                padding: 10px 0 0 0;
-                margin: 0 0 0 10px;
+                padding: 0.625em 0 0 0;
+                margin: 0 0 0 0.625em;
                 position: absolute;
                 top: 0;
             }
             
             img, li
             {
-                width: 310px;
-                height: 165px;
+                width: 19.375em;
+                height: 10.312em;
                 margin: 0;
             }
             
             li
             {
                 list-style-type: none;
-                padding-bottom: 10px;
+                padding-bottom: 0.625em;
             }
         }
     }
@@ -554,31 +555,31 @@ a:link, a:visited, a:hover, a:active
 
 #projects
 {    
-    padding: 25px 0;
+    padding: 1.562em 0;
     
     .project
     {
-        padding: 0px 8px;
-        width: 300px;
+        padding: 0 0.5em;
+        width: 18.75em;
         color: @greytext;
         
-        margin: 25px 0;
+        margin: 1.562em 0;
         display: inline-block;
     
         img
         {
-            width: 300px;
-            height: 170px;
+            width: 18.75em;
+            height: 10.625em;
         }
         
         .title-wrapper
         {
-            padding: 10px 0;
+            padding: 0.625em 0;
         }
         
         .project-title
         {
-            font-size: 24px;
+            font-size: 1.5em;
             text-transform: uppercase;
             font-weight: 600;
             color: @bluetext;
@@ -586,13 +587,13 @@ a:link, a:visited, a:hover, a:active
         
         .project-subtitle
         {
-            font-size: 18px;
+            font-size: 1.125em;
         }
         
         .project-intro
         {
-            font-size: 14px;
-            height: 94px;
+            font-size: 0.875em;
+            height: 5.875em;
             overflow: hidden;
         }
     }
@@ -600,21 +601,21 @@ a:link, a:visited, a:hover, a:active
 
 #project-content
 {
-    width: 620px;
+    width: 38.75em;
     float: left;
-    margin: 20px 0 100px 0;
+    margin: 1.25em 0 6.25em 0;
     
     p:first-child
     {
-       margin-top: 0px; 
+       margin-top: 0; 
     }
 }
 
 #project-subcontent
 {
-    width: 300px;
+    width: 18.75em;
     float: right;
-    margin: 20px 0 100px 0;
+    margin: 1.25em 0 6.25em 0;
     
     p
     {
@@ -638,34 +639,34 @@ a:link, a:visited, a:hover, a:active
     
     td
     {        
-        font-size: 18px;
+        font-size: 1.125em;
         vertical-align: top;
-        padding-bottom: 30px;
+        padding-bottom: 1.875em;
     }
 }
 
 .gallery
 {
-    padding: 12px 12px;
-    margin: 10px 0;
-    border: 1px solid black;
+    padding: 0.75em;
+    margin: 0.625em 0;
+    border: 0.062em solid black;
     
     .gallery-image
     {
         display: inline-block;
-        padding: 10px;
+        padding: 0.625em;
         position: relative;
     
         img
         {
-            border: 2px solid black;
+            border: 0.125em solid black;
             margin: 0;
             padding: 0;
         }
         
         img.cover
         {
-            border: 2px solid red;
+            border: 0.125em solid red;
             margin: 0;
             padding: 0;
         }
@@ -673,8 +674,8 @@ a:link, a:visited, a:hover, a:active
         .image-controls
         {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
+            bottom: 1.25em;
+            right: 1.25em;
             display: none;
             z-index: 10;
         }
@@ -685,12 +686,12 @@ a:link, a:visited, a:hover, a:active
 {
     img 
     {
-        border: 2px solid black;
+        border: 0.125em solid black;
     }
     
     img.cover
     {
-        border: 2px solid red;
+        border: 0.125em solid red;
     }
 }
 
@@ -699,16 +700,16 @@ a:link, a:visited, a:hover, a:active
     .thumbnail
     {
         display: inline-block;
-        padding-right: 20px;
+        padding-right: 1.25em;
     }
 }
 
 .galleries-wrapper
 {
-    margin: 20px 0;
+    margin: 1.25em 0;
 }
 
 #demoreel, #contactme
 {
-    margin: 20px 0;
+    margin: 1.25em 0;
 }
