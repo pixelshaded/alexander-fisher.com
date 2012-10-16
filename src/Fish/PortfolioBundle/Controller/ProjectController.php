@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Fish\PortfolioBundle\Entity\Project;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Project controller.
@@ -22,8 +23,13 @@ class ProjectController extends Controller
      * @Route("/", name="project_index")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        if ($request->query->get('p') === "159")
+        {
+            return $this->render('FishFrontEndBundle:Wordpress:159.html.twig');
+        }
+        
         $em = $this->getDoctrine()->getManager();
 
         $projects = $em->getRepository('FishPortfolioBundle:Project')->findAll();
