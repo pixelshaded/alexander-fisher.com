@@ -15,3 +15,4 @@ parameters:
     img_upload_dir: img/uploads
     contact_email: ~
     registration_enabled: false
+    failed_login_limit: 5

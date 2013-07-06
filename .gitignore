@@ -5,3 +5,5 @@ composer.phar
 app/config/parameters.yml
 web/media/*
 web/img/uploads/*
+app/bootstrap.php.cache
+web/bundles/
