@@ -1,7 +1,0 @@
-services:
-    fish.user.blacklist.service:
-          class: Fish\UserBundle\Service\BlacklistService
-          arguments: [@service_container]
-    fish.user.provider:
-          class: Fish\UserBundle\Security\User\UserProvider
-          arguments: [@fish.user.blacklist.service, @doctrine.orm.entity_manager]

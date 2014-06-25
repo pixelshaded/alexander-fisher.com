@@ -1,6 +1,0 @@
-services:
-    upload.path.service:
-        class: Fish\PortfolioBundle\Service\UploadPathInjectorService
-        arguments: [%img_upload_dir%]
-        tags:
-            - { name: doctrine.event_listener, event: postLoad}
