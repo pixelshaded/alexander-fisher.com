@@ -34,7 +34,20 @@ class ProjectController extends Controller
 
         $projects = $em->getRepository('FishPortfolioBundle:Project')->findAll();
         
-        if ($projects) $showcase = $projects[array_rand($projects, 1)];
+        $projects_length = count($projects);
+        
+        if ($projects)
+        {
+            $valid_showcases = array();
+            for($i = 0; $i < $projects_length; $i ++)
+            {
+                if ($projects[$i]->getGallery() && $projects[$i]->getGallery()->getImages() && count($projects[$i]->getGallery()->getImages()) > 2)
+                {
+                    array_push($valid_showcases, $projects[$i]);
+                }
+            }
+            $showcase = count($valid_showcases) > 0 ? $projects[array_rand($valid_showcases, 1)] : null;
+        }
         else $showcase = null;
 
         return array(
