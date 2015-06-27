@@ -36,16 +36,12 @@ class ProjectController extends Controller
         
         $projects_length = count($projects);
         
-        if ($projects)
+        if ($projects && count($projects) > 0)
         {
-            $valid_showcases = array();
-            for($i = 0; $i < $projects_length; $i ++)
+            $valid_showcases = array_filter($projects, function ($showcase)
             {
-                if ($projects[$i]->getGallery() && $projects[$i]->getGallery()->getImages() && count($projects[$i]->getGallery()->getImages()) > 2)
-                {
-                    array_push($valid_showcases, $projects[$i]);
-                }
-            }
+                return $showcase->getGallery() && $showcase->getGallery()->getImages() && count($showcase->getGallery()->getImages()) > 2;
+            });
             $showcase = count($valid_showcases) > 0 ? $projects[array_rand($valid_showcases, 1)] : null;
         }
         else $showcase = null;
