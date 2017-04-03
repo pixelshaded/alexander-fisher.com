@@ -1,3 +1,7 @@
+Building Site
+=============
+sudo php app/console cache:clear --env=prod
+
 Symfony Standard Edition
 ========================
 
