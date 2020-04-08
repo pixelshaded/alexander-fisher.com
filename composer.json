@@ -37,9 +37,7 @@
     },
     "config": {
         "bin-dir": "bin",
-        "github-oauth": {
-            "github.com": "6ab4ce0f02c897645b2055b3939fbe0984ad835d"
-        }
+        "secure-http": false
     },
     "minimum-stability": "dev",
     "extra": {
