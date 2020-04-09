@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y \
     ### Composer Dependencies - wget for install script, git and unzip for downloading dependencies with composer
-    git unzip \
+    git unzip vim curl \
     ### Lamp Stack
     apache2 \
     php5.6-fpm php5.6-dev php5.6-zip php5.6-curl php5.6-xmlrpc php5.6-gd php5.6-mysql php5.6-mbstring php5.6-xml libapache2-mod-php5.6 \
