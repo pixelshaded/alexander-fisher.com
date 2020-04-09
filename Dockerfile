@@ -1,7 +1,3 @@
-###################
-### registry.docker.com
-###################
-
 FROM afisher-symfony-environment:1.0 as composer_install
 
 ARG composer_auth
