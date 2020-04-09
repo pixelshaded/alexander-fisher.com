@@ -10,7 +10,12 @@ WORKDIR /portfolio-site
 
 COPY . .
 
-RUN cp app/config/parameters-dist.yml app/config/parameters.yml && \
+RUN apt-get update && \
+    apt-get install -y git unzip && \
+    chmod +x composer_install.sh && \
+    ./composer_install.sh && \
+    mv composer.phar /usr/local/bin/composer && \
+    cp app/config/parameters-dist.yml app/config/parameters.yml && \
     export COMPOSER_AUTH=$composer_auth && \
     composer install && \
     php app/console cache:clear --env=prod
