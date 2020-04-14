@@ -30,8 +30,6 @@ RUN service mysql start && \
     mysql -e "FLUSH PRIVILEGES;" && \
     mysql portfolio < portfolio-site-dump.sql && \
     cp -r docker/. / && \
-    rm -rf /var/www/html && \
-    ln -s /portfolio-site/web /var/www/html && \
     mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load && \
     chown -R www-data:www-data .
 
