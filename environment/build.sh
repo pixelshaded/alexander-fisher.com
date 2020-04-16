@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build --tag afisher-symfony-environment:1.0 .
+docker build --tag pixelshaded/symfony-environment:1.0 .

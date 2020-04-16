@@ -1,4 +1,2 @@
 #!/bin/bash
-tag=pixelshaded/symfony-environment:1.0
-docker build --tag $tag .
-docker push $tag
+docker push pixelshaded/symfony-environment:1.0

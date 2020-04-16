@@ -2,7 +2,10 @@ FROM debian:stretch-slim
 
 WORKDIR /portfolio-environment
 
-RUN apt-get update \
+COPY composer_install.sh .
+
+RUN set -x \
+ && apt-get update \
  && apt-get install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
@@ -13,6 +16,8 @@ RUN apt-get update \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
     apache2 \
+    # default server sounds like a non prod version. Verify its ok to use this in prod.
+    default-mysql-server \
     # So apache2 can load php as a module
     libapache2-mod-php5.6 \
     # needed for development...should this be part of the root image?
@@ -25,10 +30,13 @@ RUN apt-get update \
     php5.6-mysql \
     # Smyfony's dependency injection depends on XmlFileLoader
     php5.6-xml \
-    # default server sounds like a non prod version. Verify its ok to use this in prod.
-    default-mysql-server \
+    # for composer
+    unzip \
  && php -r 'echo "\nYour PHP installation is working fine.\n";' \
- && mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+ && mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load \
+ && chmod +x composer_install.sh \
+ && ./composer_install.sh \
+ && mv composer.phar /usr/local/bin/composer
 
 EXPOSE 80
 
