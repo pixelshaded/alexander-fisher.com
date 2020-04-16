@@ -1,2 +1,2 @@
 #!/bin/bash
-docker push pixelshaded/symfony-environment:1.0
+docker push pixelshaded/symfony-environment:1.1

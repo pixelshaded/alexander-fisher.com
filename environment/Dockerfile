@@ -30,8 +30,6 @@ RUN set -x \
     php5.6-mysql \
     # Smyfony's dependency injection depends on XmlFileLoader
     php5.6-xml \
-    # for composer
-    unzip \
  && php -r 'echo "\nYour PHP installation is working fine.\n";' \
  && mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load \
  && chmod +x composer_install.sh \
