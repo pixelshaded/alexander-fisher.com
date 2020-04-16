@@ -14,10 +14,12 @@ RUN set -x \
  && mysql portfolio < portfolio-site-dump.sql \
  && cp -r docker/. / \
  && cp -r /portfolio-dependencies/. /portfolio-site \
- && chown -R www-data:www-data . \
  && cp app/config/parameters-dist.yml app/config/parameters.yml \
  && composer run-script post-install-cmd-manual \
- && php app/console cache:clear --env=prod
+ && php app/console cache:clear --env=prod \
+ && chown -R www-data:www-data .
+
+EXPOSE 80
 
 CMD service apache2 start && service mysql start && tail -f /dev/null
 
