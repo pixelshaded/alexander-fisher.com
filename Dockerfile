@@ -12,11 +12,14 @@ RUN set -x \
  && mysql -e "GRANT UPDATE ON portfolio.* TO 'portfolio'@'localhost';" \
  && mysql -e "FLUSH PRIVILEGES;" \
  && mysql portfolio < portfolio-site-dump.sql \
+ && rm portfolio-site-dump.sql \
  && cp -r docker/. / \
+ && rm -rf docker \
  && cp -r /portfolio-dependencies/. /portfolio-site \
  && cp app/config/parameters-dist.yml app/config/parameters.yml \
  && composer run-script post-install-cmd-manual \
  && php app/console cache:clear --env=prod \
+ # note that app/cache and web/media need to be writable by www-data
  && chown -R www-data:www-data .
 
 EXPOSE 80
