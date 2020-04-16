@@ -1,2 +1,2 @@
 #!/bin/bash
-docker push pixelshaded/symfony-site:1.0
+docker push pixelshaded/symfony-site:1.1

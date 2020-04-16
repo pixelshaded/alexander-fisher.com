@@ -1,4 +1,4 @@
-FROM pixelshaded/symfony-environment:1.0 as composer_install
+FROM pixelshaded/symfony-environment:1.1 as composer_install
 
 ARG composer_auth
 
@@ -14,7 +14,7 @@ RUN set -x \
  && composer install \
  && php app/console cache:clear --env=prod
 
-FROM pixelshaded/symfony-environment:1.0
+FROM pixelshaded/symfony-environment:1.1
 
 WORKDIR /portfolio-site
 
