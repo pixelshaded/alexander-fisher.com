@@ -16,7 +16,7 @@ security:
     providers:
         users:
             id: fish.user.provider
-            # entity: { class: FishUserBundle:User, property: username }
+            #entity: { class: FishUserBundle:User, property: username }
 
     firewalls:
         public_area:
