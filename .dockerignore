@@ -1,0 +1,6 @@
+/dependencies/
+/environment/
+/*.md
+/*.sh
+LICENSE
+Dockerfile

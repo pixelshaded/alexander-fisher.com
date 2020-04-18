@@ -11,7 +11,7 @@ use Fish\UserBundle\Entity\User;
  * @ORM\Table(name="roles")
  * @ORM\Entity()
  */
-class Role implements RoleInterface
+class Role implements RoleInterface, \Serializable
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -58,5 +58,32 @@ class Role implements RoleInterface
     public function removeUser(User $user)
     {
         $this->users->removeElement($user);
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        /*
+         * ! Don't serialize $users field !
+         */
+        return \serialize(array(
+            $this->id,
+            $this->name,
+            $this->role
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->name,
+            $this->role
+        ) = \unserialize($serialized);
     }
 }

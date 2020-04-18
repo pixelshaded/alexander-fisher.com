@@ -1,178 +1,102 @@
-Building Site
-=============
-sudo php app/console cache:clear --env=prod
+# Symfony Site
 
-Symfony Standard Edition
-========================
+## Docker Images
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Environment variables keep Dockerfiles and shell scripts in sync. Edit and source the setenv.sh to change those values.
 
-This document contains information on how to download, install, and start
-using Symfony. For a more detailed explanation, see the [Installation][1]
-chapter of the Symfony Documentation.
+For now, the site uses 3 layers of images.
 
-1) Installing the Standard Edition
-----------------------------------
+### pixelshaded/symfony-environment
+The idea here is tevelopmenthis image could support any Symfony 2.1 project.
 
-When it comes to installing the Symfony Standard Edition, you have the
-following options.
+Installs LAMP and composer.
 
-### Use Composer (*recommended*)
+Enables apache2 rewrite.
 
-As Symfony uses [Composer][2] to manage its dependencies, the recommended way
-to create a new project is to use it.
+### pixelshaded/symfony-dependencies
+Composer needs an auth token to get files from git. It takes a build arg which will populate the COMPOSER_AUTH environment
+variable in an intermediate image so the access token doesn't leak.
 
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
+The build script passes your own COMPOSER_AUTH as a build arg. An example env var:
 
-    curl -s http://getcomposer.org/installer | php
+`{"github-oauth":{"github.com":"XXXXX"}}`
 
-Then, use the `create-project` command to generate a new Symfony application:
+This process takes a sec and since it uses the intermediate image, it does not cache easily. This is the main reason it was 
+separated out as another image so dependencies wouldn't have to be rebuilt each time we want to update source code.
 
-    php composer.phar create-project symfony/framework-standard-edition path/to/install
+Its main purpose is to get vendor files for the site image, so it's tightly coupled with it.
 
-Composer will install Symfony and all its dependencies under the
-`path/to/install` directory.
+It also includes vendor tweaks - usually fixes to vendor files that couldn't easily be updated via composer.
 
-### Download an Archive File
+### pixelshaded/symfony-site
+The symfony site src and any tweaks that need to be made to apache configs etc to make it run.
 
-To quickly test Symfony, you can also download an [archive][3] of the Standard
-Edition and unpack it somewhere under your web server root directory.
+This image builds quickly to make code changes painless. This also separates what changes often from
+what changes irregularly (env and deps will hardly ever change comparatively)
 
-If you downloaded an archive "without vendors", you also need to install all
-the necessary dependencies. Download composer (see above) and run the
-following command:
+## Making Changes
+  
+You don't need the LAMP stack installed locally to develop / add content to the site. The main focus with containerizing
+this site was not to change the underlying functionality of the site, but to make it feasible and painless (i.e. not require
+extensive dev/prod environmental setup) to update the site's content, html, styling, etc.
+Debugging php in the container hasn't been figured out for instance. You can accomplish most things using the shell scripts.
 
-    php composer.phar install
+`setenv.sh` should be sourced to provide env variables to the other scripts
 
-2) Checking your System Configuration
--------------------------------------
+`build.sh` will build the docker image.
 
-Before starting coding, make sure that your local system is properly
-configured for Symfony.
+`run.sh` runs the image with a friendly name, usually binding to port 8888.
 
-Execute the `check.php` script from the command line:
+`redeploy.sh` will rebuild and rerun the site image. Mainly used when you want to test a code change. 
+Ideally, we would just use docker cp to push files directly to the running container, but the site
+currently has issues running the cache:clear commands after doing this, preventing us from seeing
+the change.
 
-    php app/check.php
+`publish.sh` will publish the image to docker hub.
 
-Access the `config.php` script from a browser:
+`getdb.sh` will mysqldump the database to a file in the git repo
 
-    http://localhost/path/to/symfony/app/web/config.php
+### Database Changes
 
-If you get any warnings or recommendations, fix them before moving on.
+The database is versioned simply using mysqldumps.
 
-3) Browsing the Demo Application
---------------------------------
+If you need to add data to the db, run the container and use the admin portal. You can pull down those changes locally 
+to source code running `getdb.sh`. This will run mysqldump and update the portfolio-site-dump.sql file.
 
-Congratulations! You're now ready to use Symfony.
+### Gallery Images
 
-From the `config.php` page, click the "Bypass configuration and go to the
-Welcome page" link to load up your first Symfony page.
+Images get stored in web/img/uploads. If you need to add a new gallery for a new project, you will need to cp those image
+files from the container along with the db changes.
 
-You can also use a web-based configurator by clicking on the "Configure your
-Symfony Application online" link of the `config.php` page.
+## Container Analysis
 
-To see a real-live Symfony page in action, access the following page:
+This site was built back in 2012, well before containers were mainstream. In that sense, the containerization has some flaws.
 
-    web/app_dev.php/demo/hello/Fabien
+### Database and Apache2 Share a Container
 
-4) Getting started with Symfony
--------------------------------
+This means we can't currently scale the website without duplicating the data it relies on. While
+not horrendous (honestly just talking 30kb here, but a single source of truth is ideal), we are missing a clean separation where we can update the source code of the site
+without touching the database. It also means we cannot scale the database separately from the apache server. This would be a concern
+in an enterprise application, but this portfolio site won't really get the traffic
+to justify this separation. It's not serving content to thousands of users and therefore doesn't need to scale much. It also
+costs more to have the db and site run in separate containers because each container will reserve a cloudlet. We could feasibly
+handle all traffic with a single cloudlet, so this is a main reason the database remains local.
 
-This distribution is meant to be the starting point for your Symfony
-applications, but it also contains some sample code that you can learn from
-and play with.
+### Site Generates Resized Images at Runtime
 
-A great way to start learning Symfony is via the [Quick Tour][4], which will
-take you through all the basic features of Symfony2.
+The liip imagine bundle is a really cool tool, but is somewhat out of place in a container. Currently, you upload images to the site
+via the admin panel and they get stored in www/img/uploads. However thumbnails and resized images are used throughout, but these are generated
+at request time and stored in a media/cache folder. While convenient for the admin user, this hurts the user experience
+if those images aren't in cache yet because they have to be generated, delaying how long it takes for the client to get them.
+One advantage of containers is that they can be volatile. If it gets unhealthy, we just kill it and start another one. The problem
+here is that there is a user experience cost to starting up a new one - the cache has to be recreated, usually by a user.
+This means I either need to write a script that will crawl the site on start up and generate these images, or I need to generate them
+ahead of time and include them in the source for building the image. This is a strange workflow, to have to run the image
+to update the image. Database updates are handled the same way. The spirit of the original site is really a server 
+which never goes down.
 
-Once you're feeling good, you can move onto reading the official
-[Symfony2 book][5].
+### Site Generates CSS at Runtime
 
-A default bundle, `AcmeDemoBundle`, shows you Symfony2 in action. After
-playing with it, you can remove it by following these steps:
+If it can be precompiled do so. Being server side rendered helps, but ideally we don't want the client having to do the
+work of turning less in to css. Cool and convenient, but not in a production environment.
 
-  * delete the `src/Acme` directory;
-
-  * remove the routing entries referencing AcmeBundle in
-    `app/config/routing_dev.yml`;
-
-  * remove the AcmeBundle from the registered bundles in `app/AppKernel.php`;
-
-  * remove the `web/bundles/acmedemo` directory;
-
-  * remove the `security.providers`, `security.firewalls.login` and
-    `security.firewalls.secured_area` entries in the `security.yml` file or
-    tweak the security configuration to fit your needs.
-
-What's inside?
----------------
-
-The Symfony Standard Edition is configured with the following defaults:
-
-  * Twig is the only configured template engine;
-
-  * Doctrine ORM/DBAL is configured;
-
-  * Swiftmailer is configured;
-
-  * Annotations for everything are enabled.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * [**JMSSecurityExtraBundle**][13] - Allows security to be added via
-    annotations
-
-  * [**JMSDiExtraBundle**][14] - Adds more powerful dependency injection
-    features
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][15] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
-    code
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.1/book/installation.html
-[2]:  http://getcomposer.org/
-[3]:  http://symfony.com/download
-[4]:  http://symfony.com/doc/2.1/quick_tour/the_big_picture.html
-[5]:  http://symfony.com/doc/2.1/index.html
-[6]:  http://symfony.com/doc/2.1/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.1/book/doctrine.html
-[8]:  http://symfony.com/doc/2.1/book/templating.html
-[9]:  http://symfony.com/doc/2.1/book/security.html
-[10]: http://symfony.com/doc/2.1/cookbook/email.html
-[11]: http://symfony.com/doc/2.1/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.1/cookbook/assetic/asset_management.html
-[13]: http://jmsyst.com/bundles/JMSSecurityExtraBundle/master
-[14]: http://jmsyst.com/bundles/JMSDiExtraBundle/master
-[15]: http://symfony.com/doc/2.1/bundles/SensioGeneratorBundle/index.html

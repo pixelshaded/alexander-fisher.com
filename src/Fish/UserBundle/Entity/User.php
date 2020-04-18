@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="users")
  * @ORM\Entity
  */
-class User implements \Symfony\Component\Security\Core\User\AdvancedUserInterface
+class User implements \Symfony\Component\Security\Core\User\AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer $id
@@ -196,12 +196,16 @@ class User implements \Symfony\Component\Security\Core\User\AdvancedUserInterfac
     {
         return $this->isActive;
     }
-    
+
     public function getRoles()
     {
-        return $this->roles->toArray();
+        $roleNames = [];
+        foreach ($this->roles as $role) {
+            $roleNames[] = $role->getRole();
+        }
+        return $roleNames;
     }
-    
+
     public function eraseCredentials()
     {
         
@@ -237,5 +241,42 @@ class User implements \Symfony\Component\Security\Core\User\AdvancedUserInterfac
     {
         $this->roles->removeElement($role);
         $role->removeUser($this);
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        /*
+         * ! Don't serialize $roles field !
+         */
+        return \serialize(array(
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->salt,
+            $this->password,
+            $this->isActive,
+            serialize($this->roles)
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->salt,
+            $this->password,
+            $this->isActive,
+            $roles
+        ) = \unserialize($serialized);
+
+        $this->roles = unserialize($roles);
     }
 }

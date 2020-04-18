@@ -7,3 +7,5 @@ web/media/*
 web/img/uploads/*
 app/bootstrap.php.cache
 web/bundles/
+.idea
+bin

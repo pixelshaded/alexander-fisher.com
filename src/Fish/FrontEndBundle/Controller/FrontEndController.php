@@ -45,7 +45,7 @@ class FrontEndController extends Controller
                         'red' => 'The sky is red', 
                         'purple' => 'The sky is purple',
                         'blue' => 'The sky is blue',
-                        'yellow' => 'The skiy is yellow'
+                        'yellow' => 'The sky is yellow'
                     )
                     
                 ))
