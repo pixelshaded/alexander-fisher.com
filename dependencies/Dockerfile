@@ -4,14 +4,14 @@ ARG composer_auth
 
 WORKDIR /portfolio-dependencies
 
-COPY composer.json .
-COPY composer.lock .
+COPY . .
 
 RUN set -x \
  && apt-get update \
  && apt-get install -y git unzip \
  && export COMPOSER_AUTH=$composer_auth \
- && composer install
+ && composer install \
+ && cp -r vendor-tweaks/. vendor
 
 FROM pixelshaded/symfony-environment:1.1
 
