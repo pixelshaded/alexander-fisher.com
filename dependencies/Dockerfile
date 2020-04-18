@@ -1,4 +1,8 @@
-FROM pixelshaded/symfony-environment:1.1 as composer_install
+ARG PORTFOLIO_SITE_IMAGE_REPO
+ARG PORTFOLIO_SITE_ENVIRONMENT_IMAGE
+ARG PORTFOLIO_SITE_ENVIRONMENT_IMAGE_TAG
+
+FROM ${PORTFOLIO_SITE_IMAGE_REPO}/${PORTFOLIO_SITE_ENVIRONMENT_IMAGE}:${PORTFOLIO_SITE_ENVIRONMENT_IMAGE_TAG} as composer_install
 
 ARG composer_auth
 
@@ -13,7 +17,7 @@ RUN set -x \
  && composer install \
  && cp -r vendor-tweaks/. vendor
 
-FROM pixelshaded/symfony-environment:1.1
+FROM ${PORTFOLIO_SITE_IMAGE_REPO}/${PORTFOLIO_SITE_ENVIRONMENT_IMAGE}:${PORTFOLIO_SITE_ENVIRONMENT_IMAGE_TAG}
 
 WORKDIR /portfolio-dependencies
 

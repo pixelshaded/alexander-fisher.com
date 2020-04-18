@@ -1,2 +1,2 @@
 #!/bin/bash
-docker push pixelshaded/symfony-environment:1.1
+docker push $PORTFOLIO_SITE_IMAGE_REPO/$PORTFOLIO_SITE_ENVIRONMENT_IMAGE:$PORTFOLIO_SITE_ENVIRONMENT_IMAGE_TAG

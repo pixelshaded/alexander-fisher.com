@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build --tag pixelshaded/symfony-environment:1.1 .
+docker build --tag $PORTFOLIO_SITE_IMAGE_REPO/$PORTFOLIO_SITE_ENVIRONMENT_IMAGE:$PORTFOLIO_SITE_ENVIRONMENT_IMAGE_TAG .

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker push pixelshaded/symfony-dependencies:1.1
+docker push $PORTFOLIO_SITE_IMAGE_REPO/$PORTFOLIO_SITE_DEPENDENCIES_IMAGE:$PORTFOLIO_SITE_DEPENDENCIES_IMAGE_TAG
