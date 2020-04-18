@@ -21,7 +21,7 @@ The build script passes your own COMPOSER_AUTH as a build arg. An example env va
 
 `{"github-oauth":{"github.com":"XXXXX"}}`
 
-This process takes a sec and since it uses the intermediate image, it will not cache. This is the main reason it was 
+This process takes a sec and since it uses the intermediate image, it does not cache easily. This is the main reason it was 
 separated out as another image so dependencies wouldn't have to be rebuilt each time we want to update source code.
 
 Its main purpose is to get vendor files for the site image, so it's tightly coupled with it.
@@ -31,7 +31,8 @@ It also includes vendor tweaks - usually fixes to vendor files that couldn't eas
 ### pixelshaded/symfony-site
 The symfony site src and any tweaks that need to be made to apache configs etc to make it run.
 
-This image builds quickly to make code changes painless. 
+This image builds quickly to make code changes painless. This also separates what changes often from
+what changes irregularly (env and deps will hardly ever change comparatively)
 
 ## Making Changes
   
@@ -51,7 +52,7 @@ Ideally, we would just use docker cp to push files directly to the running conta
 currently has issues running the cache:clear commands after doing this, preventing us from seeing
 the change.
 
-`publish.sh` will publish the image to docker hub. The root publish script calls child publish scripts.
+`publish.sh` will publish the image to docker hub.
 
 `getdb.sh` will mysqldump the database to a file in the git repo
 
@@ -93,4 +94,9 @@ This means I either need to write a script that will crawl the site on start up 
 ahead of time and include them in the source for building the image. This is a strange workflow, to have to run the image
 to update the image. Database updates are handled the same way. The spirit of the original site is really a server 
 which never goes down.
+
+### Site Generates CSS at Runtime
+
+If it can be precompiled do so. Being server side rendered helps, but ideally we don't want the client having to do the
+work of turning less in to css. Cool and convenient, but not in a production environment.
 
