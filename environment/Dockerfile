@@ -35,6 +35,7 @@ RUN set -x \
  && chmod +x composer_install.sh \
  && ./composer_install.sh \
  && mv composer.phar /usr/local/bin/composer
+ && mkdir -p /var/tmp
 
 EXPOSE 80
 
