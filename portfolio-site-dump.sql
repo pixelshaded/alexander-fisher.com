@@ -1,5 +1,3 @@
-# noinspection SqlNoDataSourceInspectionForFile
-
 -- MySQL dump 10.16  Distrib 10.1.44-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: portfolio
