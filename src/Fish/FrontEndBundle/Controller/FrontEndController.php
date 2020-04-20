@@ -34,6 +34,9 @@ class FrontEndController extends Controller
      */
     public function contactAction(Request $request)
     {
+        if (!$this->container->getParameter('contact_enabled')){
+            throw $this->createNotFoundException();
+        }
         $form = $this->createFormBuilder()
                 ->add('email', 'email', array('label' => 'Your Email'))
                 ->add('subject')
@@ -42,25 +45,25 @@ class FrontEndController extends Controller
                     'label' => 'Antibot',
                     'choices' => array(
                         '' => '',
-                        'red' => 'The sky is red', 
+                        'red' => 'The sky is red',
                         'purple' => 'The sky is purple',
                         'blue' => 'The sky is blue',
                         'yellow' => 'The sky is yellow'
                     )
-                    
+
                 ))
                 ->getForm();
-        
+
         $errors = null;
-        
+
         if ($request->getMethod() === "POST")
         {
             $form->bindRequest($request);
-            
+
             if ($form->isValid())
             {
                 $data = $form->getData();
-                
+
                 if ($data['antibot'] !== 'blue')
                 {
                     $errors = "The sky is not " . $data['antibot'] . ". Are you sure you aren't a robot?";
@@ -74,18 +77,18 @@ class FrontEndController extends Controller
                         ->setBody($data['message'])
                     ;
                     $this->get('mailer')->send($message);
-                    
+
                     return $this->render('FishFrontEndBundle:FrontEnd:contact-success.html.twig');
                 }
             }
         }
-        
+
         return array(
             'form' => $form->createView(),
             'errors' => $errors
         );
     }
-    
+
     /**
      * @Route("/code-samples", name="fish_frontend_codesamples")
      * @Template()

@@ -26,9 +26,6 @@
                     <div id="socialbar">
                         <a href="https://github.com/pixelshaded" target="_blank"><img src="{{ asset('img/git-icon.gif') }}" alt="github"></a>
                         <a href="http://www.linkedin.com/in/alexanderffisher" target="_blank"><img src="{{ asset('img/linkedin.gif') }}" alt="linkedin"></a>
-                        <!-- <a href="#"  target="_blank"><img src="{{ asset('img/facebook-icon.jpg') }}" alt="facebook"></a> -->
-                        <a href="https://twitter.com/pixelshaded" target="_blank"><img src="{{ asset('img/twitter-icon.jpg') }}" alt="twitter"></a>
-                        <!-- <a href="#"  target="_blank"><img src="img/google-plus.jpg" alt="google-plus"></a> -->
                     </div>
                 </div>
             </div>
@@ -40,13 +37,11 @@
                         <li><a href="{{ path('fish_frontend_codesamples') }}" target="_blank">Code Samples</a></li>                                
                         {% render "FishPortfolioBundle:Category:categoryNav" %}
                         <li><a href="{{ path('fish_frontend_resume') }}">Resume</a></li>
-                        <li><a href="{{ path('fish_frontend_contact') }}">Contact Me</a></li>
-                        <!-- <li><a href="#">Bio</a></li>
-                        <li><a href="#">Tutorials</a></li> -->
-                        {% if is_granted('ROLE_USER') %} 
+{#                        <li><a href="{{ path('fish_frontend_contact') }}">Contact Me</a></li>#}
+                        {% if is_granted('ROLE_USER') %}
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li>
-                                    <a href="#">Admin</a>
+                                    <a href="{{ path('admin_category_index') }}">Admin</a>
                                     <ul>
                                         <li><a href="{{ path('admin_category_index') }}">Categories</a></li>
                                         <li><a href="{{ path('admin_gallery_index') }}">Galleries</a></li>
@@ -55,8 +50,6 @@
                                 </li>
                             {% endif %}
                             <li><a href="{{ path('logout') }}">Logout</a></li>
-                        {% else %}
-                            <li><a href="{{ path('login') }}">Login</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -78,9 +71,7 @@
                         <li><a href="{{ path('fish_frontend_codesamples') }}" target="_blank">Code Samples</a></li>  
                         {% render "FishPortfolioBundle:Category:categoryNav" %}
                         <li><a href="{{ path('fish_frontend_resume') }}">Resume</a></li>
-                        <li><a href="{{ path('fish_frontend_contact') }}">Contact Me</a></li>
-                        <!-- <li><a href="#">Bio</a></li>
-                        <li><a href="#">Tutorials</a></li> -->
+{#                        <li><a href="{{ path('fish_frontend_contact') }}">Contact Me</a></li>#}
                     </ul>
                 </div>
                 <div id="copyright">

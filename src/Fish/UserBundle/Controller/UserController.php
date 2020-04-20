@@ -21,6 +21,9 @@ class UserController extends Controller
      */
     public function loginAction()
     {
+        if (!$this->container->getParameter('login_enabled')){
+            throw $this->createNotFoundException();
+        }
         $request = $this->getRequest();
         $session = $request->getSession();
         
