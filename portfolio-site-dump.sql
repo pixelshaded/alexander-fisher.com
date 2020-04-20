@@ -1,3 +1,5 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 -- MySQL dump 10.16  Distrib 10.1.44-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: portfolio
@@ -303,7 +305,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'pixelshaded','1b32e702e1ce07d88a3108e21ab81c85','l8BNCDJhtZ6vdXLOGs2+scQy4tGfmapsQIv2dWbznwmaZfs1R3p2O3QOV0xAP7eNmXGcqouzXXuE8DPGBbmzpQ==','mail@alexander-fisher.com',1);
+INSERT INTO `users` VALUES (1,'fishypixels','21fe3a6318db39863632305c7e64c843','oWpjV+wqmgfPr3qavKd7bNZYS2rgEgOP2mFkAkUzmPZhbQWKWtpYueWTL169zxGoMWK1V/roAGirS4b52pjNdg==','afisher@alexander-fisher.com',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -13,7 +13,10 @@ RUN set -x \
  && mysql -e "CREATE DATABASE portfolio;" \
  && mysql -e "CREATE USER 'portfolio'@'localhost' IDENTIFIED BY 'portfolio_pass';" \
  && mysql -e "GRANT SELECT ON portfolio.* TO 'portfolio'@'localhost';" \
- && mysql -e "GRANT UPDATE ON portfolio.* TO 'portfolio'@'localhost';" \
+ ## required for admin section
+# && mysql -e "GRANT UPDATE ON portfolio.* TO 'portfolio'@'localhost';" \
+ ## required for admin section and registering users
+# && mysql -e "GRANT INSERT ON portfolio.* TO 'portfolio'@'localhost';" \
  && mysql -e "FLUSH PRIVILEGES;" \
  && mysql portfolio < portfolio-site-dump.sql \
  && rm portfolio-site-dump.sql \

@@ -9,7 +9,7 @@
             <td id="lastname">Fisher</td>
             <td id="contact">
                 <p><span id="address">Atlanta, GA</span> {{macros.slashes}} <span id="phone">(404) 465-4317</span></p>
-                <p><span id="email">afisher@alexander-fisher.com</span> {{macros.slashes}} <span id="website"><a href="http://www.alexander-fisher.com" target="_blank">www.alexander-fisher.com</a></span></p>
+                <p><span id="email">afisher&#64;<a href="//www.alexander-fisher.com" target="_blank">alexander-fisher.com</a></span></p>
             </td>
         </tr>
     </table>
@@ -27,19 +27,23 @@
         </tr>
         <tr class="skill">
             <td class="subtitle">Languages</td>
-            <td>Java 8, C#, AS3, SQL, HTML, ES6 Javascript, Typescript</td>
+            <td>Java, C#, AS3, SQL, HTML, ES9 Javascript, Typescript</td>
         </tr>
         <tr class="skill">
             <td class="subtitle">Engines/Frameworks</td>
             <td>ASP.NET MVC, Web API, WCF, NodeJS, Express, Flex/Flash, Angular 1, Vertx</td>
         </tr>
         <tr class="skill">
-            <td class="subtitle">Tools</td>
-            <td>Swagger/OpenAPI, React, Redux, Docker, RxJava, RxJs, Redux Sagas, Redux Epics, Redux Thunk, Redux Forms, ReactDND, Webpack</td>
+            <td class="subtitle">Tools/Libraries</td>
+            <td>React, Redux, Docker, RxJava, RxJs, Redux Sagas, Redux Epics, Redux Thunks, Redux Forms, ReactDND, Webpack, Gulp, Grunt, Elastic Search, OpenAPI, Vim, SCSS, Less, Knockout.js, JQuery</td>
         </tr>
         <tr class="skill">
-            <td class="subtitle">Exposure</td>
+            <td class="subtitle">Limited Exposure</td>
             <td>Helm, Kubernetes</td>
+        </tr>
+        <tr class="skill">
+            <td class="subtitle">Development</td>
+            <td>Agile, Scrum</td>
         </tr>
     </table>
 
@@ -68,21 +72,31 @@
                 <p>Zeta Global  //  Atlanta, GA</p>
                 <p>Senior Software Engineer</p>
                 <p>{{macros.slashes}} Supported our .NET and Flash legacy products, creating documentation and packages so anyone else could support them.</p>
-                <p>{{macros.slashes}} Integrated swagger codegen in to our Java projects. Used vertx. Used Dredd for automated contract testing where feasible. FLESH THIS OUT SOME MORE!
+                <p>{{macros.slashes}} Spearheaded integration of <a href="https://openapi-generator.tech/">OpenAPI Generator</a> in to our Java services for a Spec First approach. Created a maven package containing our custom tweaks to JavaCodeGenerator and templates for easy use in other projects, documenting general project set up. Used Dredd for automated contract testing where feasible. Vertx RxJava2 clients and models were generated from the spec and services used these to communicate with each other. Routing and request validation were handled by Vertx Web API Contract using the spec.</p>
             </td>
         </tr>
 
         <tr class="employer">
-            <td class="subtitle">Jan 2018–Nov 2019</td>
+            <td class="subtitle">Sep 2019-Nov 2019</td>
+            <td>
+                <p>IgnitionOne  //  Atlanta, GA</p>
+                <p>Tech Lead</p>
+                <p>{{macros.slashes}} Took up Scrum Master responsibilities - facilitating daily stand up, doing sprint and release retrospectives, and shielding the team from outside distractions.</p>
+                <p>{{macros.slashes}} Mentored and ramped up a team on React, Redux, Typescript, Vertx java, and Docker.</p>
+            </td>
+        </tr>
+
+        <tr class="employer">
+            <td class="subtitle">Jan 2018–Sep 2019</td>
             <td>
                 <p>IgnitionOne  //  Atlanta, GA</p>
                 <p>UI Architect</p>
-                <p>{{macros.slashes}} Did a lot of research on web page performance, using tools like chrome's Lighthouse to determine page load improvements and suggesting performance budgets for the company.</p>
+                <p>{{macros.slashes}} Did a lot of research on web page performance, using tools like Chrome's Lighthouse to determine page load improvements and suggesting performance budgets for the company.</p>
                 <p>{{macros.slashes}} Created process for containerizing our static React front ends in an Nginx container, using environment variables to change functionality at runtime rather than build time.</p>
-                <p>{{macros.slashes}} Refactored our audiences product to have responsive styling. The bootstrap classes helped tremendously with this.
+                <p>{{macros.slashes}} Refactored our audiences product to have responsive styling using the new style guide.
                 <p>{{macros.slashes}} Refactored our audiences product away from CSS in JS to use our new custom bootstrap theme and SCSS variables. The goal was to have almost zero custom styling, using only the bootstrap classes.</p>
                 <p>{{macros.slashes}} Forked Bootstrap to provide a custom theme. Documentation was hosted in a container running on Kubernetes and was used as style guide, giving example layouts, documenting custom class names, and providing code snippets for consuming SCSS variables in both SCSS files and Typescript files.</p>
-                <p>{{macros.slashes}} Refactored audiences product to use Create React App rather than a highly customized Webpack build. This became feasible when they added native support for Typescript. The idea was to use CRA to create new projects rather than forking an unmaintained company boilerplate project.</p>
+                <p>{{macros.slashes}} Refactored audiences product to use Create React App rather than a highly customized Webpack build. This became feasible when CRA added native support for Typescript. The idea was to use CRA to create new projects rather than forking an unmaintained company boilerplate project.</p>
                 <p>{{macros.slashes}} Helped and trained a remote team on a React, Redux, and Typescript project.</p>
             </td>
         </tr>
@@ -93,8 +107,8 @@
                 <p>IgnitionOne  //  Atlanta, GA</p>
                 <p>Senior Software Engineer</p>
                 <p>{{macros.slashes}} Refactored Redux middleware in audiences UI to Sagas, eventually settling on Epics so that back end focused developers could use their Reactive knowledge from RxJava in the front end.</p>
-                <p>{{macros.slashes}} Helped support and add features to the Java Vertx services used by the audiences UI.</p>
-                <p>{{macros.slashes}} Helped with rewrite of a audiences UI as a serverless UI using React, Redux, and Webpack.</p>
+                <p>{{macros.slashes}} Helped support and add features to the Java Vertx services used by the Audiences UI.</p>
+                <p>{{macros.slashes}} Helped with rewrite of a Audiences UI as a serverless UI using React, Redux, and Webpack.</p>
                 <p>{{macros.slashes}} Helped QA automate UI testing with Selenium in a Java environment.</p>
                 <p>{{macros.slashes}} Created 500 middleware for express that would log errors to graylog and return an error code in the response which could be used to look up the error later in graylog.</p>
                 <p>{{macros.slashes}} Created common component site which served as the development environment and documentation for shared angular directives and filters. Used Webpack and hot module replacement.</p>
@@ -147,8 +161,8 @@
             <td class="subtitle">Apr 2012–Sep 2012</td>
             <td>
                 <p>LIME Marketing  //  Provo, Utah</p>
-                <p>Back End Web Developer using Symfony2, php, nodejs, and twig</p>
-                <p>{{macros.slashes}} Built Node.js npm packages/libraries to support current and future Node development.</p>
+                <p>Back End Web Developer using Symfony2, PHP, NodeJS, and Twig</p>
+                <p>{{macros.slashes}} Built NPM packages/libraries to support current and future Node development.</p>
                 <p>{{macros.slashes}} Wrote back-end API for iOS app Meet Sync with Node.js. This included request schemas and validation against them to improve developer feedback when making malformed requests.</p>
                 <p>{{macros.slashes}} Worked with my team member to rewrite Cake game server with Node.js for increased performance of the iPhone game, DeadDrop. This included heavy use of raw SQL queries since they perform better then ORM systems in Node.</p>
                 <p>{{macros.slashes}} Worked with my team member to build the Symfony2 PHP backend for Apealz, an ecommerce website with image manipulation.</p>
