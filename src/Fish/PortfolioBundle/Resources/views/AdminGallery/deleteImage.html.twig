@@ -6,7 +6,7 @@
     
     <div class="thumbnail">
         <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ image.filename }}" rel="lightbox[group]">
-            <img src="{{ imagekit_path ~ tr_admin_thumb ~ image.filename }}" alt="{{ image.alt }}" {% if image == image.gallery.cover %}class="cover"{%endif%} />
+            <img src="{{ imagekit_path ~ tr_admin_thumb ~ '/' ~ image.filename }}" alt="{{ image.alt }}" {% if image == image.gallery.cover %}class="cover"{%endif%} />
         </a>
     </div>
     
