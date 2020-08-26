@@ -13,15 +13,15 @@
                     <div class="gallery">
                         <div class="gallery-image">
                             {% if gallery.cover %}
-                                <a href="{{ asset(gallery.cover.path ~ gallery.cover.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
-                                    <img src="{{ asset(gallery.cover.path ~ gallery.cover.filename) | imagine_filter('admin_thumb') }}" alt="{{ gallery.cover.alt }}" class="cover" />
+                                <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ gallery.cover.filename }}" rel="lightbox[group]">
+                                    <img src="{{ imagekit_path ~ tr_admin_thumb ~ '/' ~ gallery.cover.filename }}" alt="{{ gallery.cover.alt }}" class="cover" />
                                 </a>
                             {% endif %}
                         </div>
                         {% for image in gallery.images if loop.index < 4%}
                             <div class="gallery-image">
-                                <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
-                                    <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}"/>
+                                <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ image.filename }}" rel="lightbox[group]">
+                                    <img src="{{ imagekit_path ~ tr_admin_thumb ~ '/' ~ image.filename }}" alt="{{ image.alt }}"/>
                                 </a>
                             </div>
                         {% endfor %}

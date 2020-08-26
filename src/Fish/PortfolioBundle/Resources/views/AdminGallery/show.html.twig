@@ -18,8 +18,8 @@
         <div class="gallery">
             {% for image in gallery.images %}
                 <div class="gallery-image">
-                    <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
-                        <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}" {% if image == gallery.cover %}class="cover"{%endif%} />
+                    <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ image.filename }}" rel="lightbox[group]">
+                        <img src="{{ imagekit_path ~ tr_admin_thumb ~ '/' ~ image.filename }}" alt="{{ image.alt }}" {% if image == gallery.cover %}class="cover"{%endif%} />
                     </a>
                     <div class="image-controls">
                         {% if image != gallery.cover %}

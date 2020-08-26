@@ -26,6 +26,13 @@ twig:
         projects_animation_speed: 1000
         slideshow_interval: 5000
         slideshow_animation_speed: 1000
+        imagekit_path: 'https://ik.imagekit.io/pixelshaded/portfolio-site/'
+        tr_slideshow_thumb: 'tr:w-310,h-165'
+        tr_slideshow_slide: 'tr:w-650,h-360'
+        tr_project_thumb: 'tr:w-300,h-170'
+        tr_admin_thumb: 'tr:w-200,h-200'
+        tr_project_cover: 'tr:w-940,h-530'
+        tr_lightbox: 'tr:w-1024'
 
 # Assetic Configuration
 assetic:
