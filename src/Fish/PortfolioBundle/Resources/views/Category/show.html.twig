@@ -13,7 +13,7 @@
     {% for project in category.projects %}
     <div class="project">
         {% if project.gallery and project.gallery.cover %}
-            <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ project.gallery.cover.filename }}" rel="lightbox">
+            <a href="{{ path('project_show', {'slug': project.slug}) }}">
                 <img src="{{ imagekit_path ~ tr_project_thumb ~ '/' ~ project.gallery.cover.filename }}" alt="{{ project.gallery.cover.alt }}"/>
             </a>
         {% else %}

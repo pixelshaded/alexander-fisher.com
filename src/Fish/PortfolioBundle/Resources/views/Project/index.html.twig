@@ -8,7 +8,7 @@
         <div id="slideshow">
             <div id="image-box">
                 <div id="current-image">
-                    <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ showcase.gallery.cover.filename }}" rel="lightbox[group]">
+                    <a href=" {{ path('project_show', {'slug' : showcase.slug }) }}">
                         <img src="{{ imagekit_path ~ tr_slideshow_slide ~ '/' ~ showcase.gallery.cover.filename }}" alt="{{ showcase.gallery.cover.alt }}"/>
                     </a>
                 </div>
@@ -101,7 +101,7 @@
         {% for project in projects %}
         <div class="project">
             {% if project.gallery and project.gallery.cover %}
-                <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ project.gallery.cover.filename }}" rel="lightbox">
+                <a href="{{ path('project_show', {'slug' : project.slug }) }}">
                     <img src="{{ imagekit_path ~ tr_project_thumb ~ '/' ~ project.gallery.cover.filename }}" alt="{{ project.gallery.cover.alt }}"/>
                 </a>
             {% else %}

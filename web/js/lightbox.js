@@ -50,8 +50,8 @@ lightbox = new Lightbox options
     function LightboxOptions() {
       this.fileLoadingImage = '/images/loading.gif';
       this.fileCloseImage = '/images/close.png';
-      this.resizeDuration = 700;
-      this.fadeDuration = 500;
+      this.resizeDuration = 400;
+      this.fadeDuration = 400;
       this.labelImage = "Image";
       this.labelOf = "of";
     }
@@ -195,7 +195,7 @@ lightbox = new Lightbox options
       $image = $lightbox.find('.lb-image');
       this.sizeOverlay();
       $('#lightboxOverlay').fadeIn(this.options.fadeDuration);
-      $('.loader').fadeIn('slow');
+      $('.loader').fadeIn('fast');
       $lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
       $lightbox.find('.lb-outerContainer').addClass('animating');
       preloader = new Image;
@@ -253,7 +253,7 @@ lightbox = new Lightbox options
       var $lightbox;
       $lightbox = $('#lightbox');
       $lightbox.find('.lb-loader').hide();
-      $lightbox.find('.lb-image').fadeIn('slow');
+      $lightbox.find('.lb-image').fadeIn('fast');
       this.updateNav();
       this.updateDetails();
       this.preloadNeighboringImages();
