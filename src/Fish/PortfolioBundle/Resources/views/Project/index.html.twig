@@ -8,7 +8,7 @@
         <div id="slideshow">
             <div id="image-box">
                 <div id="current-image">
-                    <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ showcase.gallery.cover.filename }}" rel="lightbox[group]">
+                    <a href=" {{ path('project_show', {'slug' : showcase.slug }) }}">
                         <img src="{{ imagekit_path ~ tr_slideshow_slide ~ '/' ~ showcase.gallery.cover.filename }}" alt="{{ showcase.gallery.cover.alt }}"/>
                     </a>
                 </div>
