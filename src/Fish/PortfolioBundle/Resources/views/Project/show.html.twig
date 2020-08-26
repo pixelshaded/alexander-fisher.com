@@ -6,7 +6,7 @@
     <div id="gallery">
         <div id="gallery-image">
             {% if project.gallery and project.gallery.cover %}
-                <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_cover') }}" alt="{{ project.gallery.cover.alt }}"/>
+                <img src="{{ imagekit_path ~ tr_project_cover ~ '/' ~ project.gallery.cover.filename }}" alt="{{ project.gallery.cover.alt }}"/>
             {% else %}
                 <img src="#" alt="cover"/>
             {% endif %}
@@ -17,7 +17,7 @@
             </div>
             <div class="project-gallery">
                 {% if project.gallery and project.gallery.images %}
-                    <a href="{{ asset(project.gallery.images[0].path ~ project.gallery.images[0].filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">Gallery</a>
+                    <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ project.gallery.images[0].filename }}" rel="lightbox[group]">Gallery</a>
                 {% else %}
                     {{project.subtitle}}
                 {% endif %}
@@ -28,8 +28,8 @@
         <ul>
         {% for image in project.gallery.images %}
             <li class="gallery-image">
-                <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
-                    <img src="{{ asset(image.path ~ image.filename) | imagine_filter('admin_thumb') }}" alt="{{ image.alt }}" />
+                <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ image.filename }}" rel="lightbox[group]">
+                    <img src="{{ imagekit_path ~ tr_admin_thumb ~ '/' ~ image.filename }}" alt="{{ image.alt }}" />
                 </a>
             </li>
         {% endfor %}
@@ -40,7 +40,7 @@
         {% for image in project.gallery.images %}
             {% if loop.index != 1 %}
                 <li class="gallery-image">
-                    <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]"></a>
+                    <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ image.filename }}" rel="lightbox[group]"></a>
                 </li>
             {% endif %}
         {% endfor %}

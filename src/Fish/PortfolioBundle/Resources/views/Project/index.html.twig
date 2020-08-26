@@ -8,8 +8,8 @@
         <div id="slideshow">
             <div id="image-box">
                 <div id="current-image">
-                    <a href="{{ asset(showcase.gallery.cover.path ~ showcase.gallery.cover.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
-                        <img src="{{ asset(showcase.gallery.cover.path ~ showcase.gallery.cover.filename) | imagine_filter('slideshow_slide')}}" alt="{{ showcase.gallery.cover.alt }}"/>
+                    <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ showcase.gallery.cover.filename }}" rel="lightbox[group]">
+                        <img src="{{ imagekit_path ~ tr_slideshow_slide ~ '/' ~ showcase.gallery.cover.filename }}" alt="{{ showcase.gallery.cover.alt }}"/>
                     </a>
                 </div>
                 <div class="title-wrapper">
@@ -22,8 +22,8 @@
                 <ul>
                     {% for image in showcase.gallery.images %}
                         <li>
-                            <a href="{{ asset(image.path ~ image.filename) | imagine_filter('lightbox') }}" rel="lightbox[group]">
-                                <img src="{{ asset(image.path ~ image.filename) | imagine_filter('slideshow_thumb')}}" alt="{{ image.alt }}"/>
+                            <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ image.filename }}" rel="lightbox[group]">
+                                <img src="{{ imagekit_path ~ tr_slideshow_thumb ~ '/' ~ image.filename }}" alt="{{ image.alt }}"/>
                             </a>
                         </li>
                     {% endfor %}
@@ -101,8 +101,8 @@
         {% for project in projects %}
         <div class="project">
             {% if project.gallery and project.gallery.cover %}
-                <a href="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('lightbox') }}" rel="lightbox">
-                    <img src="{{ asset(project.gallery.cover.path ~ project.gallery.cover.filename) | imagine_filter('project_thumb') }}" alt="{{ project.gallery.cover.alt }}"/>
+                <a href="{{ imagekit_path ~ tr_lightbox ~ '/' ~ project.gallery.cover.filename }}" rel="lightbox">
+                    <img src="{{ imagekit_path ~ tr_project_thumb ~ '/' ~ project.gallery.cover.filename }}" alt="{{ project.gallery.cover.alt }}"/>
                 </a>
             {% else %}
                 <img src="#" alt="cover"/>
