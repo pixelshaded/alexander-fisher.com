@@ -7,7 +7,7 @@ Environment variables keep Dockerfiles and shell scripts in sync. Edit and sourc
 For now, the site uses 3 layers of images.
 
 ### pixelshaded/symfony-environment
-The idea here is tevelopmenthis image could support any Symfony 2.1 project.
+The idea here is this image could support any Symfony 2.1 project.
 
 Installs LAMP and composer.
 
@@ -41,6 +41,9 @@ this site was not to change the underlying functionality of the site, but to mak
 extensive dev/prod environmental setup) to update the site's content, html, styling, etc.
 Debugging php in the container hasn't been figured out for instance. You can accomplish most things using the shell scripts.
 
+Note that after running `source ./setenv.sh`, if the other commands require sudo, you can pass
+environment variables like so `sudo -E ./build.sh`.
+
 `setenv.sh` should be sourced to provide env variables to the other scripts
 
 `build.sh` will build the docker image.
@@ -62,11 +65,6 @@ The database is versioned simply using mysqldumps.
 
 If you need to add data to the db, run the container and use the admin portal. You can pull down those changes locally 
 to source code running `getdb.sh`. This will run mysqldump and update the portfolio-site-dump.sql file.
-
-### Gallery Images
-
-Images get stored in web/img/uploads. If you need to add a new gallery for a new project, you will need to cp those image
-files from the container along with the db changes.
 
 ## Container Analysis
 
@@ -95,8 +93,12 @@ ahead of time and include them in the source for building the image. This is a s
 to update the image. Database updates are handled the same way. The spirit of the original site is really a server 
 which never goes down.
 
+#### Imagekit Refactor
+
+All media files - images and videos - have been moved over to imagekit.io so that they are no longer a part of the docker image.
+
 ### Site Generates CSS at Runtime
 
-If it can be precompiled do so. Being server side rendered helps, but ideally we don't want the client having to do the
+If it can be precompiled, do so. Being server side rendered helps, but ideally we don't want the client having to do the
 work of turning less in to css. Cool and convenient, but not in a production environment.
 
