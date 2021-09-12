@@ -66,6 +66,14 @@ The database is versioned simply using mysqldumps.
 If you need to add data to the db, run the container and use the admin portal. You can pull down those changes locally 
 to source code running `getdb.sh`. This will run mysqldump and update the portfolio-site-dump.sql file.
 
+## Release Process
+
+- Update `PORTFOLIO_SITE_IMAGE_TAG` in `setenv.sh` to new release number
+- Run `build.sh`, then `run.sh`, and smoke test site
+- No regressions, run `publish.sh` to push a new version of the site image to dockerhub
+- Login to [massivegrid](https://app.paas.massivegrid.com/) and change environment topology for portfolio-ui-php environment
+- Update symfony-site tag in Application Servers node to new release number and re-deploy
+
 ## Container Analysis
 
 This site was built back in 2012, well before containers were mainstream. In that sense, the containerization has some flaws.
