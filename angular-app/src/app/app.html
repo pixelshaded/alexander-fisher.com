@@ -1,0 +1,11 @@
+<main class="main">
+  @for (category of categories(); track category.id) {
+    <div>
+      <div>Title: {{ category.title }}</div>
+      <div>Description: {{ category.description }}</div>
+    </div>
+  } @empty {
+    <div>No categories found</div>
+  }
+</main>
+<router-outlet />

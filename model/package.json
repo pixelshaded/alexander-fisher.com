@@ -1,0 +1,19 @@
+{
+  "name": "model",
+  "version": "1.0.0",
+  "description": "Shared models across portfolio sites",
+  "main": "index.ts",
+  "scripts": {
+    "generate-supabase-models": "supabase gen types typescript --project-id fpfwbjvfabnwhbsqcvkb > src/generated/supabase/database.types.ts",
+    "supabase": "supabase",
+    "supabase:login": "supabase login"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "supabase": "^2.40.7"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4"
+  }
+}
