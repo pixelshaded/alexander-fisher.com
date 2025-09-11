@@ -21,7 +21,7 @@ The build script passes your own COMPOSER_AUTH as a build arg. An example env va
 
 `{"github-oauth":{"github.com":"XXXXX"}}`
 
-This process takes a sec and since it uses the intermediate image, it does not cache easily. This is the main reason it was 
+This process takes a sec and since it uses the intermediate image, it does not cache easily. This is the main reason it was
 separated out as another image so dependencies wouldn't have to be rebuilt each time we want to update source code.
 
 Its main purpose is to get vendor files for the site image, so it's tightly coupled with it.
@@ -35,7 +35,7 @@ This image builds quickly to make code changes painless. This also separates wha
 what changes irregularly (env and deps will hardly ever change comparatively)
 
 ## Making Changes
-  
+
 You don't need the LAMP stack installed locally to develop / add content to the site. The main focus with containerizing
 this site was not to change the underlying functionality of the site, but to make it feasible and painless (i.e. not require
 extensive dev/prod environmental setup) to update the site's content, html, styling, etc.
@@ -50,7 +50,7 @@ environment variables like so `sudo -E ./build.sh`.
 
 `run.sh` runs the image with a friendly name, usually binding to port 8888.
 
-`redeploy.sh` will rebuild and rerun the site image. Mainly used when you want to test a code change. 
+`redeploy.sh` will rebuild and rerun the site image. Mainly used when you want to test a code change.
 Ideally, we would just use docker cp to push files directly to the running container, but the site
 currently has issues running the cache:clear commands after doing this, preventing us from seeing
 the change.
@@ -63,7 +63,7 @@ the change.
 
 The database is versioned simply using mysqldumps.
 
-If you need to add data to the db, run the container and use the admin portal. You can pull down those changes locally 
+If you need to add data to the db, run the container and use the admin portal. You can pull down those changes locally
 to source code running `getdb.sh`. This will run mysqldump and update the portfolio-site-dump.sql file.
 
 ## Release Process
@@ -98,7 +98,7 @@ One advantage of containers is that they can be volatile. If it gets unhealthy, 
 here is that there is a user experience cost to starting up a new one - the cache has to be recreated, usually by a user.
 This means I either need to write a script that will crawl the site on start up and generate these images, or I need to generate them
 ahead of time and include them in the source for building the image. This is a strange workflow, to have to run the image
-to update the image. Database updates are handled the same way. The spirit of the original site is really a server 
+to update the image. Database updates are handled the same way. The spirit of the original site is really a server
 which never goes down.
 
 #### Imagekit Refactor
@@ -110,3 +110,98 @@ All media files - images and videos - have been moved over to imagekit.io so tha
 If it can be precompiled, do so. Being server side rendered helps, but ideally we don't want the client having to do the
 work of turning less in to css. Cool and convenient, but not in a production environment.
 
+## Migrating to Supabase
+
+The point of this migration to get off our ancient php and mysql, using supabase postgresql and their rest API to fetch data from client.
+From there we can create variations of the website under many different front end technologies.
+
+Note that the tool we are going to use for this, pgloader, requires a weak authentication plugin which was deprecated in mysql 8 and
+[completely removed in mysql 9](https://blogs.oracle.com/mysql/post/mysql-90-its-time-to-abandon-the-weak-authentication-method). Homebrew will automatically install 9, so we will need to use 8 instead to use pgloader.
+
+### Migrating from Mysql to Postgres
+
+Install mysql 8.4
+
+```
+brew install mysql@8.4
+```
+
+Add mysql to path
+
+```
+echo 'export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"' >> ~/.zshrc
+```
+
+Unfortunately, homebrew has issues running 8.4 on sequoia. We will use [DBngin](https://dbngin.com/) to install and run 8.
+Note that when you add a new mysql service, target /tmp/mysql.sock for the socket so it works with homebrew mysql command.
+Mysql command has issues connecting to 8.4 even with dbngin. Use the default 8.0.33 version.
+
+Install pgloader
+
+```
+brew install pgloader
+```
+
+Use mysql_native_password as default auth plugin for compatability with pgloader. [Github Issue](https://github.com/dimitri/pgloader/issues/782#issuecomment-502323324)
+
+Edit your my.cnf and in [mysqld] section add:
+
+```
+default-authentication-plugin=mysql_native_password
+```
+
+my.cnf is found in /opt/homebrew/etc/. Can use `mysql --help` to determine other locations. I created it as ~/.my.cnf
+
+Start mysql 8 in dbngin.
+
+Connect to it
+
+```
+mysql -u root
+```
+
+Update root to use native password (this affected no rows for me)
+
+```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+```
+
+Create a database. We use public since this is the exposed schema in supabase.
+
+```
+CREATE DATABASE public;
+```
+
+```
+quit
+```
+
+Import the sql dump
+
+```
+mysql -u root public < portfolio-site-dump.sql
+```
+
+Migrate using pgloader
+
+```
+pgloader mysql://root@localhost/public postgresql://postgres.fpfwbjvfabnwhbsqcvkb:[PASSWORD]@aws-1-us-east-1.pooler.supabase.com:5432/postgres
+```
+
+Install postgresql 17
+
+```
+brew install postgresql@17
+```
+
+Add postgresql to path
+
+```
+echo 'export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"' >> ~/.zshrc
+```
+
+Dump the postgres db to a file
+
+```
+pg_dump --dbname="postgresql://postgres.fpfwbjvfabnwhbsqcvkb:[PASSWORD]@aws-1-us-east-1.pooler.supabase.com:5432/postgres" --disable-triggers > portfolio-site-postgres-dump.sql
+```
