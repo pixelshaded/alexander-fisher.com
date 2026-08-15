@@ -9,3 +9,4 @@ app/bootstrap.php.cache
 web/bundles/
 .idea
 bin
+node_modules
